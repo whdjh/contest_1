@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 회색 둥근 버튼 배경 -->
+  <circle cx="50" cy="50" r="45" fill="#808080" />
+  
+  <!-- 오른쪽 방향 화살표 아이콘 -->
+  <path d="M30 50 L60 50 M60 50 L45 35 M60 50 L45 65" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- 호버 효과를 위한 반투명 오버레이 (실제 사용 시 CSS로 구현) -->
+  <circle cx="50" cy="50" r="45" fill="rgba(255,255,255,0.1)" opacity="0" class="hover-overlay" />
+</svg>
