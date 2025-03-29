@@ -13,8 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="max-w-full">
-        <main className="flex-grow">{children}</main>
+      <body className="bg-red">
+        <main className="bg-red">{children}</main>
       </body>
     </html>
   );
