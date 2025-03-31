@@ -54,7 +54,11 @@ export default function Input({
               placeholder="메시지"
               className='border-r-1'
             />
-            <button type="button" onClick={onSubmit}>
+            <button
+              type="button" 
+              onClick={onSubmit} 
+              disabled={!value}
+            >
               <Send />
             </button>
           </div>
