@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
@@ -16,7 +18,15 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
     "@eslint/eslintrc": "^3",
+    "@storybook/addon-essentials": "^8.6.11",
+    "@storybook/addon-interactions": "^8.6.11",
+    "@storybook/addon-onboarding": "^8.6.11",
+    "@storybook/blocks": "^8.6.11",
+    "@storybook/nextjs": "^8.6.11",
+    "@storybook/react": "^8.6.11",
+    "@storybook/test": "^8.6.11",
     "@tailwindcss/postcss": "^4.0.17",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -24,7 +34,9 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "eslint-plugin-storybook": "^0.12.0",
     "postcss": "^8.5.3",
+    "storybook": "^8.6.11",
     "tailwindcss": "^4.0.17",
     "typescript": "^5"
   }
