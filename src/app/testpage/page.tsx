@@ -1,6 +1,6 @@
 'use client';
 
-import Nav from "@/components/common/Nav/index";
+import Nav from "@/components/common/Nav";
 import Input from "@/components/common/Input";
 import { useState } from "react";
 
