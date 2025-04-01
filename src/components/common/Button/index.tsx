@@ -14,7 +14,7 @@ export default function Button({
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordToggle = () => setShowPassword((prev) => !prev);
-//'chat' | 'signin' | 'singup' | 'hide';
+
   const renderButton = () => {
     switch(type) {
       case 'chat':
