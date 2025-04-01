@@ -2,9 +2,7 @@
 
 import React, { useState } from 'react';
 import { CustomInputProps } from '@/types/input';
-import Invisible from '@public/icon/ic_invisibility.svg';
-import Visible from '@public/icon/ic_visibility.svg';
-import Send from '@public/icon/ic_send.svg';
+import Button from '../Button';
 
 export default function Input({
   type,
@@ -39,9 +37,11 @@ export default function Input({
               placeholder="비밀번호"
               className='border-r-1'
             />
-            <button type="button" onClick={handlePasswordToggle}>
-              {showPassword ? <Invisible /> : <Visible />}
-            </button>
+            <Button 
+              type="hide" 
+              showPassword={showPassword} 
+              onToggle={handlePasswordToggle} 
+            />
           </div>
         );
       case 'chat':
@@ -54,13 +54,11 @@ export default function Input({
               placeholder="메시지"
               className='border-r-1'
             />
-            <button
-              type="button" 
-              onClick={onSubmit} 
-              disabled={!value}
-            >
-              <Send />
-            </button>
+            <Button 
+              type="chat" 
+              onSubmit={onSubmit} 
+              disabled={value === ''} 
+            />
           </div>
         );
       case 'readonly':

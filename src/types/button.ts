@@ -6,4 +6,5 @@ export interface CustomButtonProps {
   showPassword?: boolean;
   onSubmit?: () => void;
   onToggle?: () => void;
+  disabled?: boolean;
 }

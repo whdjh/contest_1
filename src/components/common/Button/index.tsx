@@ -12,6 +12,7 @@ export default function Button({
   onSubmit,
   showPassword,
   onToggle,
+  disabled,
 }: CustomButtonProps) {
   const renderButton = () => {
     switch(type) {
@@ -20,7 +21,8 @@ export default function Button({
           <button
             type='button'
             onClick={onSubmit} 
-            className='border-1'
+            className='flex item-center'
+            disabled={disabled}
           >
             <Send />
           </button>
@@ -31,7 +33,7 @@ export default function Button({
             type='button'
             value=''
             onClick={onSubmit}
-            className='border-1 bg-white'
+            className='border-1'
           >
             {value}
           </button>
@@ -41,7 +43,7 @@ export default function Button({
           <button 
             type='button'
             onClick={onToggle}
-            className='border-1'
+            className='flex item-center'
           >
            {showPassword ? <Invisible /> : <Visible />}
           </button>

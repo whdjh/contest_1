@@ -71,6 +71,7 @@ export default function Home() {
         <Button 
           type="chat" 
           onSubmit={handleSubmit} 
+          disabled={inputValue === ''} 
         />
 
         {/* 비밀번호 보이기/안보이기 버튼 (showPassword와 toggle 함수 전달) */}
@@ -84,7 +85,7 @@ export default function Home() {
         <Button 
           type="send" 
           value='로그인' 
-          onSubmit={handleSubmit} 
+          onSubmit={handleSubmit}
         />
       </div>
     </div>
