@@ -2,6 +2,7 @@
 
 import Nav from "@/components/common/Nav";
 import Input from "@/components/common/Input";
+import Button from "@/components/common/Button";
 import { useState } from "react";
 
 export default function Home() {
@@ -53,6 +54,23 @@ export default function Home() {
         </button>
       </div>
       <hr />
+      <div className="flex flex-col gap-5">
+        {/* 채팅 보내기 버튼 */}
+        <Button 
+          type="chat" 
+          onSubmit={handleSubmit}
+        />
+        {/* 비밀번호 보이기/안보이기 */}
+        <Button
+          type="hide"
+        />
+        {/* send 관련 버튼 */}
+        <Button
+          type="send"
+          value='로그인'
+          onSubmit={handleSubmit}
+        />
+      </div>
     </div>
   );
 }
