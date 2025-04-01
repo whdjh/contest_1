@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { CustomButtonProps } from '@/types/button';
 import Invisible from '@public/icon/ic_invisibility.svg';
 import Visible from '@public/icon/ic_visibility.svg';
@@ -10,11 +10,9 @@ export default function Button({
   type,
   value,
   onSubmit,
+  showPassword,
+  onToggle,
 }: CustomButtonProps) {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handlePasswordToggle = () => setShowPassword((prev) => !prev);
-
   const renderButton = () => {
     switch(type) {
       case 'chat':
@@ -42,7 +40,7 @@ export default function Button({
         return (
           <button 
             type='button'
-            onClick={handlePasswordToggle}
+            onClick={onToggle}
             className='border-1'
           >
            {showPassword ? <Invisible /> : <Visible />}
