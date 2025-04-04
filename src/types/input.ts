@@ -6,4 +6,5 @@ export interface CustomInputProps {
   onChange?: (value: string) => void;
   onSubmit?: () => void;
   userStatus?: boolean;
+  alignRight?: boolean;
 }

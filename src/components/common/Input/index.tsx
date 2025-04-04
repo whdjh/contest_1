@@ -10,6 +10,7 @@ export default function Input({
   onChange,
   onSubmit,
   userStatus = true,
+  alignRight,
 }: CustomInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -63,15 +64,18 @@ export default function Input({
         );
       case 'readonly':
         return (
-          <input
-            type='text'
-            value={value} // chat의 내용을 가져오게 수정
-            readOnly
-            style={{
-              backgroundColor: userStatus ? 'red' : 'blue', // 이 부분 색상 변경해야됨
-            }}
-            className='border-1'
-          />
+          <div className={`w-full flex ${alignRight ? 'justify-end' : 'justify-start'}`}>
+            <input
+              type='text'
+              value={value}
+              readOnly
+              style={{
+                backgroundColor: userStatus ? 'red' : 'blue',
+              }}
+              className={`border-1 px-3 py-1 rounded-md text-white max-w-[70%] 
+                ${userStatus ? 'bg-red-500' : 'bg-blue-500'}`}
+            />
+          </div>
         );
       default:
         return null;
