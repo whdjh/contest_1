@@ -36,9 +36,11 @@ export default function Home() {
 
         {/* 비밀번호 입력 */}
         <Input 
-          type={showPassword ? "text" : "password"} 
+          type="password" 
           value={inputValue} 
           onChange={handleInputChange} 
+          showPassword={showPassword}
+          onTogglePassword={handlePasswordToggle}
         />
 
         {/* 채팅 입력 */}
