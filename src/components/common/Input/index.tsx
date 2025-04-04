@@ -1,10 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { CustomInputProps } from '@/types/input';
-import Invisible from '@public/icon/ic_invisibility.svg';
-import Visible from '@public/icon/ic_visibility.svg';
-import Send from '@public/icon/ic_send.svg';
+import Button from '../Button';
 
 export default function Input({
   type,
@@ -12,11 +10,9 @@ export default function Input({
   onChange,
   onSubmit,
   userStatus = true,
+  showPassword = false,
+  onTogglePassword,
 }: CustomInputProps) {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handlePasswordToggle = () => setShowPassword((prev) => !prev);
-
   const renderInput = () => {
     switch (type) {
       case 'text':
@@ -37,11 +33,13 @@ export default function Input({
               value={value}
               onChange={(e) => onChange && onChange(e.target.value)}
               placeholder="비밀번호"
-              className='border-r-1'
+              className="border-r-1"
             />
-            <button type="button" onClick={handlePasswordToggle}>
-              {showPassword ? <Invisible /> : <Visible />}
-            </button>
+            <Button 
+              type="hide" 
+              showPassword={showPassword} 
+              onToggle={onTogglePassword} 
+            />
           </div>
         );
       case 'chat':
@@ -52,25 +50,23 @@ export default function Input({
               value={value}
               onChange={(e) => onChange && onChange(e.target.value)}
               placeholder="메시지"
-              className='border-r-1'
+              className="border-r-1"
             />
-            <button
-              type="button" 
-              onClick={onSubmit} 
-              disabled={!value}
-            >
-              <Send />
-            </button>
+            <Button 
+              type="chat" 
+              onSubmit={onSubmit} 
+              disabled={value === ''} 
+            />
           </div>
         );
       case 'readonly':
         return (
           <input
             type="text"
-            value={value} // chat의 내용을 가져오게 수정
+            value={value}
             readOnly
             style={{
-              backgroundColor: userStatus ? 'red' : 'blue', // 이 부분 색상 변경해야됨
+              backgroundColor: userStatus ? 'red' : 'blue',
             }}
             className="border-1"
           />

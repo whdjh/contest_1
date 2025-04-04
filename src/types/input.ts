@@ -6,4 +6,6 @@ export interface CustomInputProps {
   onChange?: (value: string) => void;
   onSubmit?: () => void;
   userStatus?: boolean;
+  showPassword?: boolean;
+  onTogglePassword?: () => void;
 }
