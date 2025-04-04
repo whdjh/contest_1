@@ -21,7 +21,7 @@ export default function Button({
           <button
             type='button'
             onClick={onSubmit} 
-            className='flex item-center'
+            className='flex items-center'
             disabled={disabled}
           >
             <Send />

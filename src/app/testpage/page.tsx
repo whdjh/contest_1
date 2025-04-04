@@ -1,13 +1,16 @@
 'use client';
-import Nav from "@/components/common/Nav";
-import Input from "@/components/common/Input";
-import Button from "@/components/common/Button";
-import { useState } from "react";
+import Nav from '@/components/common/Nav';
+import Input from '@/components/common/Input';
+import Button from '@/components/common/Button';
+import React, { useState } from 'react';
+import Modal from '@/components/common/Modal';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState(''); // 입력 값 상태 관리
   const [userStatus, setUserStatus] = useState(true); // 사용자 상태 (true: 빨간색, false: 파란색)
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 보이기/안보이기 상태 추가
+
+  const [isOpen, setIsOpen] = useState(false); // 모달 오픈상태
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
@@ -28,38 +31,27 @@ export default function Home() {
       </div>
       <div className="flex flex-col gap-5">
         {/* 텍스트 입력 */}
-        <Input 
-          type="text" 
-          value={inputValue} 
-          onChange={handleInputChange} 
-        />
+        <Input type="text" value={inputValue} onChange={handleInputChange} />
 
         {/* 비밀번호 입력 */}
-        <Input 
-          type={showPassword ? "text" : "password"} 
-          value={inputValue} 
-          onChange={handleInputChange} 
+        <Input
+          type={showPassword ? 'text' : 'password'}
+          value={inputValue}
+          onChange={handleInputChange}
         />
 
         {/* 채팅 입력 */}
-        <Input 
-          type="chat" 
-          value={inputValue} 
-          onChange={handleInputChange} 
-          onSubmit={handleSubmit} 
+        <Input
+          type="chat"
+          value={inputValue}
+          onChange={handleInputChange}
+          onSubmit={handleSubmit}
         />
 
         {/* 읽기 전용 입력 */}
-        <Input 
-          type="readonly" 
-          value={inputValue} 
-          userStatus={userStatus} 
-        />
+        <Input type="readonly" value={inputValue} userStatus={userStatus} />
 
-        <button 
-          className="border-1" 
-          onClick={() => setUserStatus(!userStatus)}
-        >
+        <button className="border-1" onClick={() => setUserStatus(!userStatus)}>
           사용자 상태 변경
         </button>
       </div>
@@ -68,25 +60,35 @@ export default function Home() {
 
       <div className="flex flex-col gap-5">
         {/* 채팅 보내기 버튼 */}
-        <Button 
-          type="chat" 
-          onSubmit={handleSubmit} 
-          disabled={inputValue === ''} 
+        <Button
+          type="chat"
+          onSubmit={handleSubmit}
+          disabled={inputValue === ''}
         />
 
         {/* 비밀번호 보이기/안보이기 버튼 (showPassword와 toggle 함수 전달) */}
-        <Button 
-          type="hide" 
-          showPassword={showPassword} 
-          onToggle={handlePasswordToggle} 
+        <Button
+          type="hide"
+          showPassword={showPassword}
+          onToggle={handlePasswordToggle}
         />
 
         {/* send 관련 버튼 */}
-        <Button 
-          type="send" 
-          value='로그인' 
-          onSubmit={handleSubmit}
-        />
+        <Button type="send" value="로그인" onSubmit={handleSubmit} />
+      </div>
+
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <button
+          onClick={() => setIsOpen(true)}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+        >
+          오픈
+        </button>
+
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          <h2 className="text-lg font-bold">모달 제목</h2>
+          <p className="mt-2">욕설 금지</p>
+        </Modal>
       </div>
     </div>
   );
