@@ -1,7 +1,8 @@
-export type TextareaType = 'chat';
+export type InputType = 'chat';
 
 export interface CustomTextareaProps {
-  type: TextareaType;
+  type: InputType;
   value?: string;
   userStatus?: boolean;
+  alignRight?: boolean;
 }
