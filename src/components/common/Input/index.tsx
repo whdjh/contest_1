@@ -9,6 +9,8 @@ export default function Input({
   value = '',
   onChange,
   onSubmit,
+  userStatus = true,
+  alignRight,
 }: CustomInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -57,6 +59,21 @@ export default function Input({
               type='chat' 
               onSubmit={onSubmit} 
               disabled={value === ''} 
+            />
+          </div>
+        );
+      case 'readonly':
+        return (
+          <div className={`w-full flex ${alignRight ? 'justify-end' : 'justify-start'}`}>
+            <input
+              type='text'
+              value={value}
+              readOnly
+              style={{
+                backgroundColor: userStatus ? 'red' : 'blue',
+              }}
+              className={`border-1 px-3 py-1 rounded-md text-white max-w-[70%] 
+                ${userStatus ? 'bg-red-500' : 'bg-blue-500'}`}
             />
           </div>
         );
