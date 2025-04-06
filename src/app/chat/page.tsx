@@ -41,7 +41,7 @@ export default function Page() {
     <div className='flex flex-col h-screen p-4 bg-gray-100'>
       <div className='flex-1 overflow-y-auto border rounded-md p-4 bg-gray-300 flex flex-col gap-2'>
         {messages.length === 0 ? (
-          <p className='text-gray-400'>메시지를 입력해보세요!</p>
+          <p className='text-midnigt'>메시지를 입력해보세요!</p>
         ) : (
           messages.map((msg, idx) => (
             <ChatBubble

@@ -16,7 +16,7 @@ export default function ChatBubble({
             <div
               className={`
                 whitespace-pre-wrap break-words px-3 py-1 rounded-md text-black max-w-[70%]
-                ${userStatus ? 'bg-red-400' : 'bg-white'}
+                ${userStatus ? 'bg-amber-300' : 'bg-white'}
               `}
             >
               {value}
