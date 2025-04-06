@@ -20,8 +20,8 @@ export default function Button({
         return (
           <button
             type='button'
-            onClick={onSubmit} 
             className='flex items-center'
+            onSubmit={() => {}}
             disabled={disabled}
           >
             <Send width={30} height={30} />
@@ -33,7 +33,7 @@ export default function Button({
             type='button'
             value=''
             onClick={onSubmit}
-            className='flex items-center'
+            className='flex items-center border'
           >
             {value}
           </button>
