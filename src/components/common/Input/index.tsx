@@ -11,6 +11,7 @@ export default function Input({
   onSubmit,
   showPassword,
   onTogglePassword,
+  placeholder = '',
 }: CustomInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -32,7 +33,7 @@ export default function Input({
             type='text'
             value={value}
             onChange={(e) => onChange && onChange(e.target.value)}
-            placeholder='아이디'
+            placeholder={placeholder}
             className='w-full border px-3 py-2 rounded-md'
           />
         );

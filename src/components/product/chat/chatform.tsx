@@ -4,20 +4,12 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-
-interface ChatFormProps {
-  onSubmitComplete: (message: string) => void;
-}
-
-interface FormData {
-  name: string;
-  email: string;
-}
+import { ChatFormProps, FormData } from '@/types/chatform';
 
 export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { },
     setValue,
     watch,
     trigger,
@@ -58,21 +50,17 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
       <Input
         type='text'
         value={name}
+        placeholder='이름'
         onChange={(val) => setValue('name', val, { shouldValidate: true })}
       />
-      {errors.name && (
-        <span className='text-red-500 text-sm'>이름을 입력해주세요.</span>
-      )}
 
       <h1>2. 이메일</h1>
       <Input
         type='text'
         value={email}
+        placeholder='이메일'
         onChange={(val) => setValue('email', val, { shouldValidate: true })}
       />
-      {errors.email && (
-        <span className='text-red-500 text-sm'>이메일을 입력해주세요.</span>
-      )}
 
       <div className='flex justify-end'>
         <Button
