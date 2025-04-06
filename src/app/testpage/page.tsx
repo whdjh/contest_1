@@ -37,6 +37,8 @@ export default function Home() {
           type={showPassword ? 'text' : 'password'}
           value={inputValue}
           onChange={handleInputChange}
+          showPassword={showPassword}
+          onTogglePassword={handlePasswordToggle}
         />
 
         {/* 채팅 입력 */}
