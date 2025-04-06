@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CustomInputProps } from '@/types/input';
 import Button from '../Button';
 
@@ -11,11 +11,22 @@ export default function Input({
   onSubmit,
 }: CustomInputProps) {
   const [showPassword, setShowPassword] = useState(false);
-
   const handlePasswordToggle = () => setShowPassword((prev) => !prev);
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Hook으로 교체 예정
+  useEffect(() => {
+    if (type === 'chat' && textareaRef.current) {
+      const textarea = textareaRef.current;
+      textarea.style.height = 'auto'; // 초기화
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 80)}px`; 
+    }
+  }, [value, type]);
 
   const renderInput = () => {
     switch (type) {
+      // 아이디
       case 'text':
         return (
           <input
@@ -23,18 +34,19 @@ export default function Input({
             value={value}
             onChange={(e) => onChange && onChange(e.target.value)}
             placeholder='아이디'
-            className='border-1'
+            className='w-full border px-3 py-2 rounded-md'
           />
         );
+      // 비밀번호
       case 'password':
         return (
-          <div className='flex items-center gap-1 border-1 w-45'>
+          <div className='flex items-center w-full border rounded-md px-2 py-2 gap-2'>
             <input
               type={showPassword ? 'text' : 'password'}
               value={value}
               onChange={(e) => onChange && onChange(e.target.value)}
               placeholder='비밀번호'
-              className='border-r-1'
+              className='flex-1 bg-transparent outline-none'
             />
             <Button 
               type='hide' 
@@ -43,21 +55,25 @@ export default function Input({
             />
           </div>
         );
+      // 채팅방 입력
       case 'chat':
         return (
-          <div className='flex items-center gap-1 border-1 w-45'>
-            <input
-              type='text'
+          <div className='flex items-end w-full bg-sky-50 border rounded-md px-3 py-2'>
+            <textarea
+              ref={textareaRef}
               value={value}
               onChange={(e) => onChange && onChange(e.target.value)}
-              placeholder='메시지'
-              className='border-r-1'
+              placeholder='메시지를 입력하세요...'
+              className='flex-1 bg-transparent resize-none overflow-y-auto outline-none text-base leading-tight max-h-[5rem]'
+              rows={1}
             />
-            <Button 
-              type='chat' 
-              onSubmit={onSubmit} 
-              disabled={value === ''} 
-            />
+            <div className='ml-2'>
+              <Button 
+                type='chat' 
+                onSubmit={onSubmit} 
+                disabled={value.trim() === ''} 
+              />
+            </div>
           </div>
         );
       default:
@@ -65,5 +81,5 @@ export default function Input({
     }
   };
 
-  return <div>{renderInput()}</div>;
+  return <div className="w-full">{renderInput()}</div>;
 }

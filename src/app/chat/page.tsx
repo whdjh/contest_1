@@ -38,8 +38,8 @@ export default function Page() {
   };
 
   return (
-    <div className='flex flex-col h-screen p-4 bg-gray-100'>
-      <div className='flex-1 overflow-y-auto border rounded-md p-4 bg-gray-300 flex flex-col gap-2'>
+    <div className='flex flex-col h-screen'>
+      <div className='flex flex-col flex-1 overflow-y-auto p-4 border bg-sky-200 gap-2'>
         {messages.length === 0 ? (
           <p className='text-midnigt'>메시지를 입력해보세요!</p>
         ) : (
@@ -54,15 +54,12 @@ export default function Page() {
           ))
         )}
       </div>
-
-      <div className='mt-4'>
         <Input
           type='chat'
           value={chatInput}
           onChange={setChatInput}
           onSubmit={handleSubmit}
         />
-      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function Button({
             className='flex items-center'
             disabled={disabled}
           >
-            <Send />
+            <Send width={30} height={30} />
           </button>
         );
       case 'send':
@@ -33,7 +33,7 @@ export default function Button({
             type='button'
             value=''
             onClick={onSubmit}
-            className='border-1'
+            className='flex items-center'
           >
             {value}
           </button>
