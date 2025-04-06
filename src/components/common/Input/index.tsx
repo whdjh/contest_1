@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { CustomInputProps } from '@/types/input';
 import Button from '../Button';
+import { useAutoResizeInput } from '@/hooks/useResizeInput';
 
 export default function Input({
   type,
@@ -15,18 +16,10 @@ export default function Input({
 }: CustomInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Hook으로 교체 예정
-  useEffect(() => {
-    if (type === 'chat' && textareaRef.current) {
-      const textarea = textareaRef.current;
-      textarea.style.height = 'auto';
-      textarea.style.height = `${Math.min(textarea.scrollHeight, 80)}px`; 
-    }
-  }, [value, type]);
+  useAutoResizeInput(textareaRef, value, type);
 
   const renderInput = () => {
     switch (type) {
-      // 아이디
       case 'text':
         return (
           <input
@@ -37,7 +30,6 @@ export default function Input({
             className='w-full border px-3 py-2 rounded-md'
           />
         );
-      // 비밀번호
       case 'password':
         return (
           <div className='flex items-center w-full border rounded-md px-2 py-2 gap-2'>
@@ -55,7 +47,6 @@ export default function Input({
             />
           </div>
         );
-      // 채팅방 입력
       case 'chat':
         return (
           <div className='flex items-end w-full bg-sky-50 border px-3 py-2'>
@@ -81,5 +72,5 @@ export default function Input({
     }
   };
 
-  return <div className="w-full">{renderInput()}</div>;
+  return <div className='w-full'>{renderInput()}</div>;
 }
