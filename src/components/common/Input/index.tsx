@@ -9,7 +9,6 @@ export default function Input({
   value = '',
   onChange,
   onSubmit,
-  userStatus = true,
 }: CustomInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -60,18 +59,6 @@ export default function Input({
               disabled={value === ''} 
             />
           </div>
-        );
-      case 'readonly':
-        return (
-          <input
-            type='text'
-            value={value} // chat의 내용을 가져오게 수정
-            readOnly
-            style={{
-              backgroundColor: userStatus ? 'red' : 'blue', // 이 부분 색상 변경해야됨
-            }}
-            className='border-1'
-          />
         );
       default:
         return null;

@@ -7,7 +7,6 @@ import Modal from '@/components/common/Modal';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState(''); // 입력 값 상태 관리
-  const [userStatus, setUserStatus] = useState(true); // 사용자 상태 (true: 빨간색, false: 파란색)
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 보이기/안보이기 상태 추가
 
   const [isOpen, setIsOpen] = useState(false); // 모달 오픈상태
@@ -48,12 +47,6 @@ export default function Home() {
           onSubmit={handleSubmit}
         />
 
-        {/* 읽기 전용 입력 */}
-        <Input type="readonly" value={inputValue} userStatus={userStatus} />
-
-        <button className="border-1" onClick={() => setUserStatus(!userStatus)}>
-          사용자 상태 변경
-        </button>
       </div>
 
       <hr />
