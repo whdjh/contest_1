@@ -15,7 +15,7 @@ export default function ChatBubble({
           <div className={`w-full flex ${alignRight ? 'justify-end' : 'justify-start'}`}>
             <div
               className={`
-                whitespace-pre-wrap break-words px-3 py-1 rounded-md text-black max-w-[40%]
+                whitespace-pre-wrap break-words px-3 py-1 rounded-md text-black max-w-[70%]
                 ${userStatus ? 'bg-red-400' : 'bg-white'}
               `}
             >
