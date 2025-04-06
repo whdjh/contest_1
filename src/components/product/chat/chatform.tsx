@@ -6,7 +6,9 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { ChatFormProps, FormData } from '@/types/chatform';
 
-export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
+export default function ChatForm({ 
+  onSubmitComplete, 
+}: ChatFormProps) {
   const {
     handleSubmit,
     formState: { },
