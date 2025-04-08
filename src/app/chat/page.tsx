@@ -16,6 +16,7 @@ export default function Page() {
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isComposing, setIsComposing] = useState(false); // 한글 입력 여부
 
   useEffect(() => {
     if (messages.length === 0) {
@@ -40,6 +41,14 @@ export default function Page() {
       { text: '제출이 되었습니다.', sender: 'bot' },
     ]);
     setIsFormSubmitted(true);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (isComposing) return;
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // 마지막 한글 입력 방지
+      handleChatSubmit();
+    }
   };
 
   return (
@@ -67,6 +76,9 @@ export default function Page() {
             value={chatInput}
             onChange={setChatInput}
             onSubmit={handleChatSubmit}
+            onKeyDown={handleKeyDown}
+            onCompositionStart={() => setIsComposing(true)}
+            onCompositionEnd={() => setIsComposing(false)}
           />
         </div>
       )}

@@ -10,10 +10,17 @@ export default function Input({
   value = '',
   onChange,
   onSubmit,
+  onKeyDown,
+  onCompositionStart,
+  onCompositionEnd,
   showPassword,
   onTogglePassword,
   placeholder = '',
-}: CustomInputProps) {
+}: CustomInputProps & {
+  onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  onCompositionStart?: () => void;
+  onCompositionEnd?: () => void;
+}) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useAutoResizeInput(textareaRef, value, type);
@@ -55,8 +62,11 @@ export default function Input({
               value={value}
               onChange={(e) => onChange?.(e.target.value)}
               placeholder='메시지를 입력하세요...'
-              className='flex-1 bg-transparent resize-none overflow-y-auto outline-none text-base leading-tight max-h-[5rem] pd-1'
+              className='flex-1 bg-transparent resize-none overflow-y-auto outline-none text-base leading-tight max-h-[5rem]'
               rows={1}
+              onKeyDown={onKeyDown}
+              onCompositionStart={onCompositionStart}
+              onCompositionEnd={onCompositionEnd}
             />
             <div className='ml-2'>
               <Button 
