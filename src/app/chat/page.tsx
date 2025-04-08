@@ -22,6 +22,7 @@ export default function Page() {
     if (messages.length === 0) {
       setMessages([{ text: GREETINGS, sender: 'bot' }]);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChatSubmit = () => {
