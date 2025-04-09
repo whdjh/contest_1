@@ -1,11 +1,13 @@
-export type InputType = 'text' | 'password' | 'chat' | 'readonly';
+export type InputType = 'text' | 'password' | 'chat' | 'chatbubble';
 
 export interface CustomInputProps {
   type: InputType;
   value?: string;
+  placeholder?: string;
   onChange?: (value: string) => void;
   onSubmit?: () => void;
-  userStatus?: boolean;
   showPassword?: boolean;
   onTogglePassword?: () => void;
+  userStatus?: boolean;
+  alignRight?: boolean;
 }
