@@ -72,7 +72,7 @@ export default function Input({
             />
             <div className='ml-2'>
               <Button 
-                type='chat' 
+                type='messageSend' 
                 onSubmit={onSubmit} 
                 disabled={value.trim() === ''} 
               />

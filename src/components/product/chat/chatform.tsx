@@ -66,7 +66,7 @@ export default function ChatForm({
 
       <div className='flex justify-end'>
         <Button
-          type='send'
+          type='formSubmit'
           value={isSubmitting ? '제출 중...' : '제출하기'}
           onSubmit={handleSubmitClick}
           disabled={isSubmitting}
