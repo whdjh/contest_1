@@ -4,7 +4,11 @@ import React from 'react';
 import { ModalProps } from '@/types/modal';
 
 
-export default function Modal({ isOpen, onClose, children }: ModalProps) {
+export default function Modal({ 
+  isOpen, 
+  onClose, 
+  children, 
+}: ModalProps) {
   if (!isOpen) return null;
 
   return (

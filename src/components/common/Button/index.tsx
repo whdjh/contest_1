@@ -20,20 +20,20 @@ export default function Button({
         return (
           <button
             type='button'
-            onClick={onSubmit} 
             className='flex items-center'
+            onClick={onSubmit}
             disabled={disabled}
           >
-            <Send />
+            <Send width={30} height={30} />
           </button>
         );
       case 'send':
         return (
           <button
             type='button'
-            value=''
             onClick={onSubmit}
-            className='border-1'
+            className='flex items-center justify-center border bg-amber-300 text-black p-2 rounded-md'
+            disabled={disabled}
           >
             {value}
           </button>
@@ -43,7 +43,7 @@ export default function Button({
           <button 
             type='button'
             onClick={onToggle}
-            className='flex item-center'
+            className='flex items-center'
           >
            {showPassword ? <Invisible /> : <Visible />}
           </button>
