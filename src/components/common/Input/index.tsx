@@ -15,6 +15,8 @@ export default function Input({
   onCompositionEnd,
   showPassword,
   onTogglePassword,
+  userStatus,
+  alignRight,
   placeholder = '',
 }: CustomInputProps & {
   onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
@@ -70,13 +72,27 @@ export default function Input({
             />
             <div className='ml-2'>
               <Button 
-                type='chat' 
+                type='messageSend' 
                 onSubmit={onSubmit} 
                 disabled={value.trim() === ''} 
               />
             </div>
           </div>
         );
+      case 'chatbubble': 
+      return (
+        <div className={`w-full flex ${alignRight ? 'justify-end' : 'justify-start'}`}>
+          <div
+            className={`
+              whitespace-pre-wrap break-words px-3 py-1 rounded-lg text-black max-w-[70%]
+              ${userStatus ? 'bg-amber-300' : 'bg-white'}
+            `}
+          >
+            {value}
+            <h3 className='flex justify-end text-[8px]'>01:30</h3>
+          </div>
+        </div>
+      );
       default:
         return null;
     }

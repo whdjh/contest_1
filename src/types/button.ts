@@ -1,4 +1,4 @@
-export type ButtonType = 'chat' | 'send' | 'hide';
+export type ButtonType = 'messageSend' | 'formSubmit' | 'hide';
 
 export interface CustomButtonProps {
   type: ButtonType;

@@ -16,7 +16,7 @@ export default function Button({
 }: CustomButtonProps) {
   const renderButton = () => {
     switch(type) {
-      case 'chat':
+      case 'messageSend':
         return (
           <button
             type='button'
@@ -27,7 +27,7 @@ export default function Button({
             <Send width={30} height={30} />
           </button>
         );
-      case 'send':
+      case 'formSubmit':
         return (
           <button
             type='button'
