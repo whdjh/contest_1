@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Input from '@/components/common/Input';
-import ChatBubble from '@/components/common/ChatBubble';
 import ChatForm from '@/components/product/chat/chatform';
 
 interface ChatMessage {
@@ -56,9 +55,9 @@ export default function Page() {
     <div className='flex flex-col h-screen'>
       <div className='flex-1 overflow-y-auto p-4 bg-sky-100 flex flex-col gap-2'>
         {messages.map((msg, idx) => (
-          <ChatBubble
+          <Input
             key={idx}
-            type='chat'
+            type='chatbubble'
             value={msg.text}
             userStatus={msg.sender === 'user'}
             alignRight={msg.sender === 'user'}
