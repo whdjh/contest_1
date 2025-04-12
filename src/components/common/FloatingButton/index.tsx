@@ -1,19 +1,13 @@
 'use client';
 
-import { useState } from "react";
+import { FloatingButtonProps } from "@/types/floatingbutton";
 
-export default function FloatingButton() {
-  const [openSubMenu, setOpenSubMenu] = useState(false);
-  const handleMunuClick = () => {
-    setOpenSubMenu((prev) => !prev);
-  }
-  const handleLanguageClick = () => {
-    alert("언어변환버튼클릭");
-  }
-  const handledarkClick = () => {
-    alert("다크모드버튼클릭");
-  }
-
+export default function FloatingButton({
+  openSubMenu,
+  handleMenuClick,
+  handleLanguageClick,
+  handledarkClick,
+}: FloatingButtonProps) {
   return (
     <div className='fixed bottom-8 right-8 flex flex-col item-end'>
       {openSubMenu && (
@@ -38,7 +32,7 @@ export default function FloatingButton() {
       )}
       <button
         className='w-14 h-14 rounded-full bg-amber-300 text-white text-lg flex items-center justify-center'
-        onClick={handleMunuClick}
+        onClick={handleMenuClick}
       >
         +
       </button>
