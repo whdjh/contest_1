@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import SmoothScroll from '@/hooks/useSmoothScroll';
-import BlurBackground from '@/components/ui/BlurBackground/BlurBackground';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,9 +16,6 @@ export default function RootLayout({
     <SmoothScroll>
       <html lang="ko">
         <body className="bg-red">
-          <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
-            <BlurBackground />
-          </div>
           <main className="bg-red">{children}</main>
         </body>
       </html>
