@@ -1,68 +1,87 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Input from '@/components/common/Input';
-import ChatBubble from '@/components/common/ChatBubble';
+import ChatForm from '@/components/product/chat/chatform';
 
-// API 도입 후 교체 예정
 interface ChatMessage {
   text: string;
   sender: 'user' | 'bot';
 }
 
+const GREETINGS = `안녕하세요, 잡코디입니다! 직무 추천을 위해 아래 폼 데이터를 입력해주세요!`;
+
 export default function Page() {
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isComposing, setIsComposing] = useState(false); // 한글 입력 여부
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (messages.length === 0) {
+      setMessages([{ text: GREETINGS, sender: 'bot' }]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleChatSubmit = () => {
     if (chatInput.trim() === '') return;
-
-    const userMessage: ChatMessage = {
-      text: chatInput,
-      sender: 'user',
-    };
-
-    // 사용자 메시지 추가
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [
+      ...prev,
+      { text: chatInput, sender: 'user' },
+      { text: '봇 응답 준비 중입니다...', sender: 'bot' },
+    ]);
     setChatInput('');
+  };
 
-    // TODO: 봇 응답 GET 요청 -> 현재는 더미 메시지로 대체
-    // API 도입후 교체 예정
-    const botMessage: ChatMessage = {
-      text: '안녕하세요!',
-      sender: 'bot',
-    };
-    setTimeout(() => {
-      setMessages((prev) => [...prev, botMessage]);
-    }, 500);
+  const handleFormSubmit = (userMessage: string) => {
+    setMessages((prev) => [
+      ...prev,
+      { text: userMessage, sender: 'user' },
+      { text: '제출이 되었습니다.', sender: 'bot' },
+    ]);
+    setIsFormSubmitted(true);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (isComposing) return;
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // 마지막 한글 입력 방지
+      handleChatSubmit();
+    }
   };
 
   return (
-    <div className='flex flex-col h-screen p-4 bg-gray-100'>
-      <div className='flex-1 overflow-y-auto border rounded-md p-4 bg-gray-300 flex flex-col gap-2'>
-        {messages.length === 0 ? (
-          <p className='text-gray-400'>메시지를 입력해보세요!</p>
-        ) : (
-          messages.map((msg, idx) => (
-            <ChatBubble
-              key={idx}
-              type='chat'
-              value={msg.text}
-              userStatus={msg.sender === 'user'}
-              alignRight={msg.sender === 'user'}
-            />
-          ))
+    <div className='flex flex-col h-screen'>
+      <div className='flex-1 overflow-y-auto p-4 bg-sky-100 flex flex-col gap-2'>
+        {messages.map((msg, idx) => (
+          <Input
+            key={idx}
+            type='chatbubble'
+            value={msg.text}
+            userStatus={msg.sender === 'user'}
+            alignRight={msg.sender === 'user'}
+          />
+        ))}
+
+        {!isFormSubmitted && (
+          <ChatForm onSubmitComplete={handleFormSubmit} />
         )}
       </div>
 
-      <div className='mt-4'>
-        <Input
-          type='chat'
-          value={chatInput}
-          onChange={setChatInput}
-          onSubmit={handleSubmit}
-        />
-      </div>
+      {isFormSubmitted && (
+        <div className='border-t'>
+          <Input
+            type='chat'
+            value={chatInput}
+            onChange={setChatInput}
+            onSubmit={handleChatSubmit}
+            onKeyDown={handleKeyDown}
+            onCompositionStart={() => setIsComposing(true)}
+            onCompositionEnd={() => setIsComposing(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }
