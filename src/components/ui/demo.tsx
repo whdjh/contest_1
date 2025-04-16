@@ -15,11 +15,12 @@ function Preview() {
             layout
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
           >
-            물어보세요!{" "}
+            아직도 모르시나요? 
+   
           </motion.span>
           <TextRotate
             texts={[
-              "지금 당장",
+              "물어보세요!",
               "당신에게 어울리는 직업을",
               "공부하는 방법을",
               "취업하는 방법을",
