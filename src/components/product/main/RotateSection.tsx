@@ -7,12 +7,19 @@ import Image from 'next/image';
 
 gsap.registerPlugin(Draggable);
 
-type RotateSectionProps = {
-  images: string[];
-};
-
-export default function RotateSection({ images }: RotateSectionProps) {
+export default function RotateSection() {
   const itemsRef = useRef<HTMLDivElement>(null);
+
+  const images = [
+    '/image/1.jpeg',
+    '/image/2.jpeg',
+    '/image/3.jpg',
+    '/image/4.jpeg',
+    '/image/5.jpeg',
+    '/image/6.jpeg',
+    '/image/7.jpeg',
+    '/image/8.jpg',
+  ];
 
   useEffect(() => {
     const imageElements = gsap.utils.toArray('.item') as HTMLElement[];
@@ -99,7 +106,7 @@ export default function RotateSection({ images }: RotateSectionProps) {
         }
       },
     });
-  }, [images]);
+  }, []);
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-white text-black">
