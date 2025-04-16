@@ -1,7 +1,6 @@
 import TextSection from '@/components/product/main/TextSeciton';
 import ImageSection from '@/components/product/main/ImageSection';
 import LinkSection from '@/components/product/main/LinkSection';
-import HomeContent from '@/components/product/main/homeContent';
 import RotateSection from '@/components/product/main/RotateSection';
 
 export default function Home() {
@@ -24,7 +23,6 @@ export default function Home() {
 
         <ImageSection key="main" />
         <LinkSection key="link" />
-        <HomeContent />
       </main>
     </>
   );
