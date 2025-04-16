@@ -8,7 +8,7 @@ export default function MainSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <motion.section className="flex flex-wrap justify-center items-center min-h-screen bg-black p-4">
+    <motion.section className="flex flex-wrap justify-center items-center min-h-screen p-4">
       {cards.map((card, index) => (
         <div
           key={card.id}

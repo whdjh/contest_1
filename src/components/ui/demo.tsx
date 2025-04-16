@@ -7,7 +7,7 @@ import { TextRotate } from "@/components/ui/text-rotate"
 
 function Preview() {
   return (
-    <div className="w-full h-full text-6xl sm:text-3xl md:text-5xl flex flex-row items-center justify-center font-overusedGrotesk bg-black dark:text-muted text-foreground font-light overflow-hidden p-12 sm:p-20 md:p-24">
+    <div className="w-full h-full text-6xl sm:text-3xl md:text-5xl flex flex-row items-center justify-center font-overusedGrotesk dark:text-muted text-foreground font-light overflow-hidden p-12 sm:p-20 md:p-24">
       <LayoutGroup>
         <motion.div className="flex whitespace-pre flex-col gap-10 items-center" layout>
           <motion.span
