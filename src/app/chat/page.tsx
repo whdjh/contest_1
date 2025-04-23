@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Input from '@/components/common/Input';
 import ChatForm from '@/components/product/chat/chatform';
+import { postFirstChat, postChat } from '@/libs/chat/postChat';
+import { AxiosError } from 'axios';
+import { UserFormData } from '@/types/chatform';
 import FloatingButton from '@/components/common/FloatingButton';
 
 interface ChatMessage {
@@ -26,6 +29,9 @@ export default function Page() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleFormSubmit = async (formData: UserFormData) => {
+    const userMessage = `${formData.email}\n${formData.username}`;
+    
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -36,25 +42,76 @@ export default function Page() {
     if (chatInput.trim() === '') return;
     setMessages((prev) => [
       ...prev,
-      { text: chatInput, sender: 'user' },
+      { text: userMessage, sender: 'user' },
+      { text: '제출 중입니다...', sender: 'bot' },
+    ]);
+    setIsFormSubmitted(true);
+
+    try {
+      const response = await postFirstChat(formData);
+      setUuid(response.uuid);
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        { text: response?.content || '응답을 가져오지 못했습니다.', sender: 'bot' },
+      ]);
+    } catch (error: unknown) {
+      let errMsg = '오류가 발생했습니다. 다시 시도해주세요.';
+      if (error instanceof AxiosError && error.response?.data?.message) {
+        errMsg = error.response.data.message;
+      }
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        { text: errMsg, sender: 'bot' },
+      ]);
+    }
+  };
+
+  const handleChatSubmit = async () => {
+    if (chatInput.trim() === '') return;
+    if (!uuid) {
+      alert('먼저 폼을 제출해주세요.');
+      return;
+    }
+
+    const userText = chatInput;
+    setMessages((prev) => [
+      ...prev,
+      { text: userText, sender: 'user' },
       { text: '봇 응답 준비 중입니다...', sender: 'bot' },
     ]);
     setChatInput('');
-  };
 
-  const handleFormSubmit = (userMessage: string) => {
-    setMessages((prev) => [
-      ...prev,
-      { text: userMessage, sender: 'user' },
-      { text: '제출이 되었습니다.', sender: 'bot' },
-    ]);
-    setIsFormSubmitted(true);
+    try {
+      const response = await postChat({
+        uuid,
+        content: userText.trim(),
+      });
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        { text: response?.content || '응답을 가져오지 못했습니다.', sender: 'bot' },
+      ]);
+    } catch (error: unknown) {
+      let errMsg = '오류가 발생했습니다. 다시 시도해주세요.';
+      if (error instanceof AxiosError && error.response?.data?.message) {
+        const apiMsg = error.response.data.message;
+        if (
+          apiMsg === '내용을 입력해주세요.' ||
+          apiMsg === '해당 사용자가 없습니다. 폼데이터를 제출해주세요.'
+        ) {
+          errMsg = apiMsg;
+        }
+      }
+      setMessages((prev) => [
+        ...prev.slice(0, -1),
+        { text: errMsg, sender: 'bot' },
+      ]);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (isComposing) return;
     if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault(); // 마지막 한글 입력 방지
+      e.preventDefault();
       handleChatSubmit();
     }
   };
@@ -74,10 +131,10 @@ export default function Page() {
             alignRight={msg.sender === 'user'}
           />
         ))}
-
-        {!isFormSubmitted && <ChatForm onSubmitComplete={handleFormSubmit} />}
+        {!isFormSubmitted && (
+          <ChatForm onSubmitComplete={handleFormSubmit} />
+        )}
       </div>
-
       {isFormSubmitted && (
         <div className="border-t">
           <Input

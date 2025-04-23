@@ -4,7 +4,7 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { ChatFormProps, FormData } from '@/types/chatform';
+import { ChatFormProps, UserFormData } from '@/types/chatform';
 
 export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
   const {
@@ -13,29 +13,28 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
     setValue,
     watch,
     trigger,
-  } = useForm<FormData>({ mode: 'onBlur' });
-
+  } = useForm<UserFormData>({ mode: 'onBlur' });
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const name = watch('name') || '';
+  const username = watch('username') || '';
   const email = watch('email') || '';
+  
 
-  const onSubmitForm = async (data: FormData) => {
-    const userText = `1. ${data.name}\n2. ${data.email}`;
+  const onSubmitForm = async (data: UserFormData) => {
 
     try {
       setIsSubmitting(true);
-      console.log('서버에 제출 중...');
-      // 서버 요청 로직 추가 가능
+      console.log('서버에 제출 중');
     } catch (error) {
       console.error('제출 오류:', error);
     } finally {
-      onSubmitComplete(userText);
+      onSubmitComplete(data);
       setIsSubmitting(false);
     }
   };
 
   const handleSubmitClick = async () => {
-    const isValid = await trigger(['name', 'email']);
+    const isValid = await trigger(['username', 'email']);
     if (!isValid) return;
 
     handleSubmit(onSubmitForm)();
@@ -55,7 +54,7 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
         onChange={(val) => setValue('name', val, { shouldValidate: true })}
       />
 
-      <h1>2. 이메일</h1>
+      <h1>2. 이름</h1>
       <Input
         type="text"
         value={email}

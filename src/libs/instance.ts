@@ -1,9 +1,7 @@
-/*
 import axios from 'axios';
 
-const BASE_URL = process.
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: BASE_URL,
 });
-*/
