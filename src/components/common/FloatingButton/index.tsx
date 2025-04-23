@@ -1,41 +1,38 @@
 'use client';
 
-import { FloatingButtonProps } from "@/types/floatingbutton";
+import { useEffect, useState } from 'react';
+import { FloatingButtonProps } from '@/types/floatingbutton';
 
-export default function FloatingButton({
-  openSubMenu,
-  handleMenuClick,
-  handleLanguageClick,
-  handledarkClick,
-}: FloatingButtonProps) {
+export default function FloatingButton({ scrollRef }: FloatingButtonProps) {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const target = scrollRef?.current || window;
+
+    const handleScroll = () => {
+      const scrollTop = scrollRef?.current?.scrollTop ?? window.scrollY;
+      setShow(scrollTop > 200);
+    };
+
+    target.addEventListener('scroll', handleScroll);
+    return () => {
+      target.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollRef]);
+
+  const scrollToTop = () => {
+    const target = scrollRef?.current || window;
+    target.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className='fixed bottom-8 right-8 flex flex-col item-end'>
-      {openSubMenu && (
-        <ul className='mb-3 list-none p-0'>
-          <li className='mt-2'>
-            <button
-              className='w-14 h-14 rounded-full bg-amber-300 text-white text-xs flex items-center justify-center'
-              onClick={handleLanguageClick}
-            >
-              언어변환
-            </button>
-          </li>
-          <li className='mt-2'>
-            <button
-              className='w-14 h-14 rounded-full bg-amber-300 text-white text-xs flex items-center justify-center'
-              onClick={handledarkClick}
-            >
-              다크모드
-            </button>
-          </li>
-        </ul>
-      )}
+    show && (
       <button
-        className='w-14 h-14 rounded-full bg-amber-300 text-white text-lg flex items-center justify-center'
-        onClick={handleMenuClick}
+        className="fixed bottom-30 right-10 w-14 h-14 rounded-full bg-orange-400 text-white text-2xl flex items-center justify-center shadow-lg hover:bg-amber-400 transition-all duration-500 animate-bounce z-50"
+        onClick={scrollToTop}
       >
-        +
+        ↑
       </button>
-    </div>
+    )
   );
 }

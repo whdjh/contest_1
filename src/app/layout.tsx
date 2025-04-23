@@ -1,29 +1,48 @@
-'use client';  
+'use client';
 
 import '@/styles/globals.css';
 import SmoothScroll from '@/hooks/useSmoothScroll';
-import FloatingButton from '@/components/common/FloatingButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Toggle from '@/components/common/Toggle';
+
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [openSubMenu, setOpenSubMenu] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setIsDark(true);
+    }
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+    }
+  }, []);
+
 
   return (
     <SmoothScroll>
       <html lang="ko">
-        <body className="bg-red">
-          <main className="bg-red">
+        <body>
+          <main>
             {children}
-            <FloatingButton
-              openSubMenu={openSubMenu}
-              handleMenuClick={() => setOpenSubMenu((prev) => !prev)}
-              handleLanguageClick={() => console.log('언어 변경')}
-              handledarkClick={() => console.log('다크모드')}
-            />
+            <Toggle on={isDark} toggle={toggleTheme} />
+
           </main>
         </body>
       </html>

@@ -6,12 +6,10 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { ChatFormProps, FormData } from '@/types/chatform';
 
-export default function ChatForm({ 
-  onSubmitComplete, 
-}: ChatFormProps) {
+export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
   const {
     handleSubmit,
-    formState: { },
+    formState: {},
     setValue,
     watch,
     trigger,
@@ -46,27 +44,28 @@ export default function ChatForm({
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className='bg-white border rounded-md p-4 shadow-sm mt-2 flex flex-col gap-3'
+      className="dark:bg-amber-400 border rounded-md p-4 shadow-sm mt-2 flex flex-col gap-3 bg-sky-200"
     >
       <h1>1. 이름</h1>
+
       <Input
-        type='text'
+        type="text"
         value={name}
-        placeholder='이름'
+        placeholder="이름"
         onChange={(val) => setValue('name', val, { shouldValidate: true })}
       />
 
       <h1>2. 이메일</h1>
       <Input
-        type='text'
+        type="text"
         value={email}
-        placeholder='이메일'
+        placeholder="이메일"
         onChange={(val) => setValue('email', val, { shouldValidate: true })}
       />
 
-      <div className='flex justify-end'>
+      <div className="flex justify-end">
         <Button
-          type='formSubmit'
+          type="formSubmit"
           value={isSubmitting ? '제출 중...' : '제출하기'}
           onSubmit={handleSubmitClick}
           disabled={isSubmitting}

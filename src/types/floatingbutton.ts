@@ -1,6 +1,5 @@
+import { RefObject } from 'react';
+
 export interface FloatingButtonProps {
-  openSubMenu: boolean;
-  handleMenuClick: () => void;
-  handleLanguageClick: () => void;
-  handledarkClick: () => void;
-};
+  scrollRef?: RefObject<HTMLElement | null>;
+}

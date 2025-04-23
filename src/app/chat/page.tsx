@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Input from '@/components/common/Input';
 import ChatForm from '@/components/product/chat/chatform';
+import FloatingButton from '@/components/common/FloatingButton';
 
 interface ChatMessage {
   text: string;
@@ -16,13 +17,20 @@ export default function Page() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [isComposing, setIsComposing] = useState(false); // 한글 입력 여부
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (messages.length === 0) {
       setMessages([{ text: GREETINGS, sender: 'bot' }]);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages]); 
 
   const handleChatSubmit = () => {
     if (chatInput.trim() === '') return;
@@ -52,27 +60,28 @@ export default function Page() {
   };
 
   return (
-    <div className='flex flex-col h-screen'>
-      <div className='flex-1 overflow-y-auto p-4 bg-sky-100 flex flex-col gap-2'>
+    <div className="flex flex-col h-screen">
+      <div
+        ref={scrollRef}
+        className="flex-1 overflow-y-auto p-4 bg-sky-100 flex flex-col gap-2 dark:bg-black"
+      >
         {messages.map((msg, idx) => (
           <Input
             key={idx}
-            type='chatbubble'
+            type="chatbubble"
             value={msg.text}
             userStatus={msg.sender === 'user'}
             alignRight={msg.sender === 'user'}
           />
         ))}
 
-        {!isFormSubmitted && (
-          <ChatForm onSubmitComplete={handleFormSubmit} />
-        )}
+        {!isFormSubmitted && <ChatForm onSubmitComplete={handleFormSubmit} />}
       </div>
 
       {isFormSubmitted && (
-        <div className='border-t'>
+        <div className="border-t">
           <Input
-            type='chat'
+            type="chat"
             value={chatInput}
             onChange={setChatInput}
             onSubmit={handleChatSubmit}
@@ -82,6 +91,7 @@ export default function Page() {
           />
         </div>
       )}
+      <FloatingButton scrollRef={scrollRef} />
     </div>
   );
 }
