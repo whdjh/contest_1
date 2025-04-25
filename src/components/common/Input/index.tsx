@@ -85,7 +85,7 @@ export default function Input({
           <div
             className={`
               whitespace-pre-wrap break-words px-3 py-1 rounded-lg text-black max-w-[70%]
-              ${userStatus ? 'bg-amber-300' : 'bg-white'}
+              ${userStatus ? 'bg-amber-300' : 'bg-white dark:bg-neutral-800 dark:text-white'}
             `}
           >
             {value}
