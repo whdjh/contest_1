@@ -13,7 +13,7 @@ export default function MainSection() {
         <div
           key={card.id}
           className={`relative m-2 flex flex-col justify-end bg-cover bg-center rounded-lg shadow-lg cursor-pointer transition-all duration-500 ${
-            activeIndex === index ? 'w-80 h-96' : 'w-40 h-60'
+            activeIndex === index ? 'w-70 h-48 md:w-80 md:h-96' : 'w-10 h-20 md:w-40 md:h-60'
           }`}
           style={{ backgroundImage: `url(${card.image})` }}
           onClick={() => setActiveIndex(index)}
@@ -23,8 +23,6 @@ export default function MainSection() {
             <div className="flex items-center space-x-2">
               <i className={`${card.icon} text-xl`}></i>
               <div>
-                <h3 className="text-lg font-bold">{card.title}</h3>
-                <p className="text-sm">{card.subtitle}</p>
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@ function Preview() {
       <LayoutGroup>
         <motion.div className="flex whitespace-pre flex-col gap-10 items-center" layout>
           <motion.span
-            className="pt-0.5 sm:pt-1 md:pt-2 text-[#f89b00] text-6xl"
+            className="pt-0.5 sm:pt-1 md:pt-2 text-[#f89b00] text-2xl xl:text-6xl md:text-4xl"
             layout
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
           >
@@ -25,7 +25,7 @@ function Preview() {
               "공부하는 방법을",
               "취업하는 방법을",
             ]}
-            mainClassName="text-[#1a237e] text- px-2 sm:px-2 md:px-3 bg-[#f89b00] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+            mainClassName=" text-[#1a237e] text- px-2 sm:px-2 md:px-3 text-xl md:text-4xl bg-[#f89b00] overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
             staggerFrom={"last"}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}

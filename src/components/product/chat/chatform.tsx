@@ -49,12 +49,12 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
 
       <Input
         type="text"
-        value={name}
+        value={username}
         placeholder="이름"
-        onChange={(val) => setValue('name', val, { shouldValidate: true })}
+        onChange={(val) => setValue('username', val, { shouldValidate: true })}
       />
 
-      <h1>2. 이름</h1>
+      <h1>2. 이메일</h1>
       <Input
         type="text"
         value={email}

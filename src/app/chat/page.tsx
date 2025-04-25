@@ -20,6 +20,7 @@ export default function Page() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [isComposing, setIsComposing] = useState(false); // 한글 입력 여부
+  const [uuid, setUuid] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,17 +30,14 @@ export default function Page() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleFormSubmit = async (formData: UserFormData) => {
-    const userMessage = `${formData.email}\n${formData.username}`;
-    
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]); 
 
-  const handleChatSubmit = () => {
-    if (chatInput.trim() === '') return;
+  const handleFormSubmit = async (formData: UserFormData) => {
+    const userMessage = `${formData.email}\n${formData.username}`;
     setMessages((prev) => [
       ...prev,
       { text: userMessage, sender: 'user' },
@@ -65,6 +63,22 @@ export default function Page() {
       ]);
     }
   };
+    
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    
+    const handleWheel = (e: WheelEvent) => {
+      e.stopPropagation();
+    };
+    
+    if (scrollContainer) {
+      scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
+      return () => {
+        scrollContainer.removeEventListener('wheel', handleWheel);
+      };
+    }
+  }, []);
+
 
   const handleChatSubmit = async () => {
     if (chatInput.trim() === '') return;
@@ -121,6 +135,7 @@ export default function Page() {
       <div
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-4 bg-sky-100 flex flex-col gap-2 dark:bg-black"
+        
       >
         {messages.map((msg, idx) => (
           <Input
@@ -152,3 +167,4 @@ export default function Page() {
     </div>
   );
 }
+

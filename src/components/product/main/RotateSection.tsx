@@ -109,9 +109,9 @@ export default function RotateSection() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden text-black">
-      <div className="absolute top-[28%] left-1/2 -translate-x-1/2 h-screen select-none flex flex-col gap-10">
-        <p className="text-5xl font-bold text-transparent bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text shadow-lg">
+    <section className="relative w-full h-screen overflow-hidden text-black ">
+      <div className="absolute top-[14%] left-1/2 -translate-x-1/2 h-screen select-none flex flex-col gap-20">
+        <p className="md:text-5xl text-2xl font-bold text-transparent bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text shadow-lg">
           CareerBot 
         </p>
 
@@ -125,7 +125,7 @@ export default function RotateSection() {
               key={idx}
               className="item absolute left-1/2 top-0 transform -translate-x-1/2 cursor-pointer select-none"
             >
-              <div className="card border-[10px] border-black rounded-[17px] overflow-hidden cursor-grab relative w-[430px] h-[610px] sm:w-[350px] sm:h-[497px] max-h-[90vh]">
+              <div className="card border-[10px] border-black dark:border-white rounded-[17px] overflow-hidden cursor-grab relative w-[300px] h-[300px] sm:w-[350px] sm:h-[497px] max-h-[90vh]">
                 <Image
                   src={src}
                   alt={`rotating-${idx}`}
