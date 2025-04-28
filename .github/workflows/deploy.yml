@@ -24,12 +24,12 @@ jobs:
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.HWICHUL_GITHUB_KEY }}  # GitHub Personal Access Token (secrets에 저장된 값)
+          API_TOKEN_GITHUB: ${{ secrets.WHDJH_GITHUB_KEY }}  # GitHub Personal Access Token (secrets에 저장된 값)
         with:
           source-directory: 'output'  # 업로드할 로컬 폴더 경로 (output 폴더)
-          destination-github-username: hwiiron  # 복사할 대상 깃허브 계정 이름
-          destination-repository-name: taskify  # 복사할 대상 레포지토리 이름
-          user-email: ${{ secrets.HWICHUL_ACCOUNT_EMAIL }}  # 커밋할 때 사용할 사용자 이메일 (secrets에 저장된 값)
+          destination-github-username: whdjh  # 복사할 대상 깃허브 계정 이름
+          destination-repository-name: FE  # 복사할 대상 레포지토리 이름
+          user-email: ${{ secrets.WHDJH_ACCOUNT_EMAIL }}  # 커밋할 때 사용할 사용자 이메일 (secrets에 저장된 값)
           commit-message: ${{ github.event.commits[0].message }}  # push 발생한 원래 커밋 메시지를 그대로 사용
           target-branch: feature  # 복사할 대상 저장소의 브랜치 이름 (feature 브랜치)
 
