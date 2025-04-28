@@ -12,7 +12,7 @@ jobs:
         uses: robvanderleek/create-issue-branch@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branchName: "#${{ github.event.issue.number }}_${{ github.event.issue.title }}"
+          branchName: '#${issue.number}-${issue.title}'
           autoCloseIssue: true
           openDraftPR: true
           copyIssueLabelsToPR: true
