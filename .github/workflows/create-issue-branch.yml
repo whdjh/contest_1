@@ -12,7 +12,7 @@ jobs:
         uses: robvanderleek/create-issue-branch@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branchName: chistock-${{ github.event.issue.number }}-${{ github.event.issue.title | replace: ' ', '-' }}  # # 제거하고 - 사용
+          branchName: chistock-${{ github.event.issue.number }}
           autoCloseIssue: true
           openDraftPR: true
           copyIssueLabelsToPR: true
