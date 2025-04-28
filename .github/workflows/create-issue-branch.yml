@@ -12,7 +12,7 @@ jobs:
         uses: robvanderleek/create-issue-branch@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branchName: "chistock-${{ issue.number }}_${{ issue.title.replace(/^#\\d+\\s*/, '').replace(/ /g, '_') }}"
+          branchName: chistock-#${{ github.event.issue.number }}
           autoCloseIssue: true
           openDraftPR: true
           copyIssueLabelsToPR: true
