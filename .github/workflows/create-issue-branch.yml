@@ -2,7 +2,7 @@ name: Create Issue Branch
 
 on:
   issues:
-    types: [assigned]
+    types: [opened]
 
 jobs:
   create_issue_branch_job:
@@ -12,29 +12,8 @@ jobs:
         uses: robvanderleek/create-issue-branch@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branchName: "#${{ github.event.issue.number }}_$(echo '${{ github.event.issue.title }}' | tr ' ' '_')"
+          branchName: "#${{ github.event.issue.number }}_${{ github.event.issue.title }}"
           autoCloseIssue: true
           openDraftPR: true
           copyIssueLabelsToPR: true
           copyIssueAssigneeToPR: true
-          branches: |
-            - label: 🐛 Bug
-              prefix: bugfix/
-            - label: 🩹 Simple Fix
-              prefix: bugfix/
-            - label: 🚨 HOTFIX
-              prefix: hotfix/
-            - label: 👷 CI
-              prefix: env/
-            - label: ⚙️ Setting
-              prefix: env/
-            - label: 💄 Design
-              prefix: feature/
-            - label: ✨ Feature
-              prefix: feature/
-            - label: ♻️ Refactor
-              prefix: feature/
-            - label: ✅ Test
-              prefix: feature/
-            - label: 📝 Document
-              prefix: docs/
