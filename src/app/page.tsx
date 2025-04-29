@@ -24,7 +24,7 @@ export default function Home() {
         <LinkSection />
       </SectionWrapper>
 
-      <FloatingButton />
+      <FloatingButton type="upscroll" />
     </main>
   );
 }
