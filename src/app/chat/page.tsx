@@ -7,6 +7,7 @@ import { postFirstChat, postChat } from '@/libs/chat/postChat';
 import { AxiosError } from 'axios';
 import { UserFormData } from '@/types/chatform';
 import FloatingButton from '@/components/common/FloatingButton';
+import { useRouter } from 'next/navigation';
 
 interface ChatMessage {
   text: string;
@@ -19,9 +20,11 @@ export default function Page() {
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [isComposing, setIsComposing] = useState(false); // 한글 입력 여부
+  const [isComposing, setIsComposing] = useState(false); 
   const [uuid, setUuid] = useState<string | null>(null);
+  const [showEndButton, setShowEndButton] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (messages.length === 0) {
@@ -34,10 +37,18 @@ export default function Page() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages]); 
+  }, [messages]);
 
   const handleFormSubmit = async (formData: UserFormData) => {
-    const userMessage = `${formData.email}\n${formData.username}`;
+    const userMessage = [
+      `최종학력: ${formData.education}`,
+      `전공: ${formData.major}`,
+      `관심분야: ${formData.interests}`,
+      `성격: ${formData.personality}`,
+      `희망근무형태: ${formData.workPreference}`,
+      `원하는 연봉: ${formData.desiredSalary}`,
+    ].join('\n');
+
     setMessages((prev) => [
       ...prev,
       { text: userMessage, sender: 'user' },
@@ -52,6 +63,7 @@ export default function Page() {
         ...prev.slice(0, -1),
         { text: response?.content || '응답을 가져오지 못했습니다.', sender: 'bot' },
       ]);
+      setShowEndButton(true);
     } catch (error: unknown) {
       let errMsg = '오류가 발생했습니다. 다시 시도해주세요.';
       if (error instanceof AxiosError && error.response?.data?.message) {
@@ -63,14 +75,14 @@ export default function Page() {
       ]);
     }
   };
-    
+
   useEffect(() => {
     const scrollContainer = scrollRef.current;
-    
+
     const handleWheel = (e: WheelEvent) => {
       e.stopPropagation();
     };
-    
+
     if (scrollContainer) {
       scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
       return () => {
@@ -78,7 +90,6 @@ export default function Page() {
       };
     }
   }, []);
-
 
   const handleChatSubmit = async () => {
     if (chatInput.trim() === '') return;
@@ -130,12 +141,16 @@ export default function Page() {
     }
   };
 
+  // TODO: API 연동하기
+  const handleEndButtonClick = () => {
+    router.push('/result');
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <div
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-4 bg-sky-100 flex flex-col gap-2 dark:bg-black"
-        
       >
         {messages.map((msg, idx) => (
           <Input
@@ -150,6 +165,7 @@ export default function Page() {
           <ChatForm onSubmitComplete={handleFormSubmit} />
         )}
       </div>
+
       {isFormSubmitted && (
         <div className="border-t">
           <Input
@@ -163,8 +179,11 @@ export default function Page() {
           />
         </div>
       )}
-      <FloatingButton scrollRef={scrollRef} />
+
+      {showEndButton && (
+        <FloatingButton type="end" onClick={handleEndButtonClick} />
+      )}
+      <FloatingButton type="upscroll" scrollRef={scrollRef} />
     </div>
   );
 }
-

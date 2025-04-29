@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-
+ 
 const BASE_URL = process.env.BACKEND_CHAT_API!;
 
 export async function POST(req: NextRequest) {

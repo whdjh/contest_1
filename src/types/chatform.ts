@@ -3,13 +3,22 @@ export interface ChatFormProps {
 }
 
 export interface UserFormData {
-  username: string;
-  email: string;
+  education: string;
+  major: string;
+  interests: string;
+  personality: string;
+  workPreference: string;
+  desiredSalary: string;
+  [key: string]: string | undefined;
 }
 
 export interface StartChatRequest {
-  username: string;
-  email: string;
+  education: string;
+  major: string;
+  interests: string;
+  personality: string;
+  workPreference: string;
+  desiredSalary: string;
 }
 
 export interface ChatRequest {
