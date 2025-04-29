@@ -5,11 +5,17 @@ import { CustomButtonProps } from '@/types/button';
 import Invisible from '@public/icon/ic_invisibility.svg';
 import Visible from '@public/icon/ic_visibility.svg';
 import Send from '@public/icon/ic_send.svg';
+import ActiveLeft from '@public/icon/ic_arrow_activeleft.svg';
+import InActiveLeft from '@public/icon/ic_arrow_inactiveleft.svg';
+import Activeright from '@public/icon/ic_arrow_activeright.svg';
+import InActiveRight from '@public/icon/ic_arrow_inactiveright.svg'
 
 export default function Button({
   type,
   value,
   onSubmit,
+  onPrev,
+  onNext,
   showPassword,
   onToggle,
   disabled,
@@ -46,6 +52,28 @@ export default function Button({
             className='flex items-center'
           >
            {showPassword ? <Invisible /> : <Visible />}
+          </button>
+        );
+      case 'prev':
+        return (
+          <button
+            type='button'
+            onClick={onPrev}
+            disabled={disabled}
+            className="px-4 py-2 rounded disabled:opacity-50"
+          >
+            {disabled ? <InActiveLeft /> : <ActiveLeft />}
+          </button>
+        );
+      case 'next':
+        return (
+          <button
+            type='button'
+            onClick={onNext}
+            disabled={disabled}
+            className="px-4 py-2 rounded disabled:opacity-50"
+          >
+            {disabled ? <InActiveRight /> : <Activeright />}
           </button>
         );
       default:

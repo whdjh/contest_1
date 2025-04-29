@@ -1,3 +1,4 @@
+// /mock/resultCard.ts
 export const cardData = [
   {
     "name": "한국고용정보원_직업훈련_국민내일배움카드 훈련과정",
@@ -207,3 +208,4 @@ export const cardData = [
     "@type": "Dataset"
   }
 ]
+

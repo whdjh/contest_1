@@ -1,21 +1,15 @@
 import Card from '@/components/common/Card';
-import {cardData} from '@/mock/resultCard';
+import { cardData } from '@/mock/resultCard';
+import Pagination from '@/components/common/Pagination';
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen items-center justify-center gap-10">
-      {cardData.map((item, index) => (
-        <Card
-          key={index}
-          containerClassName="h-80 w-48"
-          frontClassName="bg-blue-200 text-black"
-          backClassName="bg-blue-400 text-black"
-          name={item.name}
-          description={item.description}
-          url={item.url}
-          additionaltype={item.additionalType}
-        />
-      ))}
+    <div className="min-h-screen flex items-center justify-center">
+      <Pagination
+        data={cardData}
+        CardComponent={Card}
+        pageSize={3}
+      />
     </div>
   );
 }
