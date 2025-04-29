@@ -14,11 +14,32 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
     watch,
     trigger,
     setError,
-  } = useForm<UserFormData>({ mode: 'onBlur' });
+    clearErrors,
+    register,
+  } = useForm<UserFormData>({ 
+    mode: 'onBlur',
+    defaultValues: {
+      education: '',
+      major: '',
+      interests: '',
+      personality: '',
+      workPreference: '',
+      desiredSalary: ''
+    }
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isFormComplete, setIsFormComplete] = useState(false);
   const fields = watch();
+
+  useEffect(() => {
+    register('education', { required: '최종학력을 선택해주세요.' });
+    register('major', { required: '전공을 입력해주세요.' });
+    register('interests', { required: '관심분야를 입력해주세요.' });
+    register('personality', { required: '성격을 선택해주세요.' });
+    register('workPreference', { required: '희망근무형태를 선택해주세요.' });
+    register('desiredSalary', { required: '원하는 연봉을 선택해주세요.' });
+  }, [register]);
 
   useEffect(() => {
     const requiredFields = [
@@ -40,36 +61,45 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
   const onSubmitForm = async (data: UserFormData) => {
     try {
       setIsSubmitting(true);
-      console.log('서버에 제출 중');
+      console.log('서버에 제출 중', data);
+      onSubmitComplete(data);
     } catch (error) {
       console.error('제출 오류:', error);
     } finally {
-      onSubmitComplete(data);
       setIsSubmitting(false);
     }
   };
 
   const handleSubmitClick = async () => {
     const isValid = await trigger();
-    if (!isValid) return;
+    if (!isValid) {
+      console.log('Form validation failed', errors);
+      return;
+    }
+    
     handleSubmit(onSubmitForm)();
   };
 
-  const validateInput = (value: string, fieldName: string) => {
+  const validateInput = (value: string, fieldName: keyof UserFormData) => {
     const invalidCharRegex = /[^a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣\s]/;
+    
     if (invalidCharRegex.test(value)) {
-      setError(fieldName, {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setError(fieldName as any, {
         type: 'manual',
         message: '영어, 한글, 공백만 입력 가능합니다.',
       });
+      return false;
     } else {
-      setError(fieldName, { type: 'manual', message: '' });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      clearErrors(fieldName as any);
+      return true;
     }
   };
 
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit(onSubmitForm)}
       className="dark:bg-amber-400 border rounded-md p-4 shadow-sm mt-2 flex flex-col gap-4 bg-sky-200"
     >
       <h1>1. 최종학력</h1>
@@ -87,6 +117,7 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
           </label>
         ))}
       </div>
+      {errors.education && <p className="text-red-500 text-sm">{errors.education.message}</p>}
 
       <h1>2. 전공</h1>
       <Input
@@ -94,8 +125,10 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
         value={fields.major || ''}
         placeholder="전공"
         onChange={(val) => {
-          setValue('major', val, { shouldValidate: true });
-          validateInput(val, 'major'); // Validate when the input changes
+          const isValid = validateInput(val, 'major');
+          if (isValid) {
+            setValue('major', val, { shouldValidate: true });
+          }
         }}
       />
       {errors.major && <p className="text-red-500 text-sm">{errors.major.message}</p>}
@@ -106,8 +139,10 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
         value={fields.interests || ''}
         placeholder="관심분야"
         onChange={(val) => {
-          setValue('interests', val, { shouldValidate: true });
-          validateInput(val, 'interests');
+          const isValid = validateInput(val, 'interests');
+          if (isValid) {
+            setValue('interests', val, { shouldValidate: true });
+          }
         }}
       />
       {errors.interests && <p className="text-red-500 text-sm">{errors.interests.message}</p>}
@@ -127,6 +162,7 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
           </label>
         ))}
       </div>
+      {errors.personality && <p className="text-red-500 text-sm">{errors.personality.message}</p>}
 
       <h1>5. 희망근무형태</h1>
       <div className="flex flex-row gap-x-4 flex-wrap">
@@ -143,6 +179,7 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
           </label>
         ))}
       </div>
+      {errors.workPreference && <p className="text-red-500 text-sm">{errors.workPreference.message}</p>}
 
       <h1>6. 원하는 연봉</h1>
       <div className="flex flex-row gap-x-4 flex-wrap">
@@ -159,6 +196,7 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
           </label>
         ))}
       </div>
+      {errors.desiredSalary && <p className="text-red-500 text-sm">{errors.desiredSalary.message}</p>}
 
       <div className="flex justify-end">
         <Button
