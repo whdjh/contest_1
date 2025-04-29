@@ -2,6 +2,8 @@ export interface CardProps {
   frontClassName?: string;
   backClassName?: string;
   containerClassName?: string;
-  frontText?: string;
-  backText?: string;
+  name?: string;
+  description?: string;
+  url?: string;
+  additionaltype?: string;
 }

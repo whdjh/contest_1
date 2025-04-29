@@ -10,8 +10,10 @@ export default function Page() {
           containerClassName="h-80 w-48"
           frontClassName="bg-blue-200 text-black"
           backClassName="bg-blue-400 text-black"
-          frontText={item.front}
-          backText={item.back}
+          name={item.name}
+          description={item.description}
+          url={item.url}
+          additionaltype={item.additionalType}
         />
       ))}
     </div>
