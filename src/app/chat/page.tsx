@@ -40,7 +40,15 @@ export default function Page() {
   }, [messages]);
 
   const handleFormSubmit = async (formData: UserFormData) => {
-    const userMessage = `${formData.email}\n${formData.username}`;
+    const userMessage = [
+      `최종학력: ${formData.education}`,
+      `전공: ${formData.major}`,
+      `관심분야: ${formData.interests}`,
+      `성격: ${formData.personality}`,
+      `희망근무형태: ${formData.workPreference}`,
+      `원하는 연봉: ${formData.desiredSalary}`,
+    ].join('\n');
+
     setMessages((prev) => [
       ...prev,
       { text: userMessage, sender: 'user' },

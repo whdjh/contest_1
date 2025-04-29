@@ -38,7 +38,11 @@ export default function Button({
           <button
             type='button'
             onClick={onSubmit}
-            className='flex items-center justify-center border bg-amber-300 text-black p-2 rounded-md hover:bg-blue-600'
+            className={`flex items-center justify-center border p-2 rounded-md ${
+              disabled 
+                ? 'bg-gray-400 text-gray-600 cursor-not-allowed opacity-60' 
+                : 'bg-amber-300 text-black hover:bg-amber-500'
+            }`}      
             disabled={disabled}
           >
             {value}
