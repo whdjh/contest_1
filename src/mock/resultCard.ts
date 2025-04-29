@@ -1,211 +1,218 @@
-// /mock/resultCard.ts
 export const cardData = [
   {
-    "name": "한국고용정보원_직업훈련_국민내일배움카드 훈련과정",
-    "description": "국민내일배움카드(일반) 급격한 기술발전에 적응하고 노동시장 변화에 대응하는 사회안전망 차원에서 생애에 걸친 역량개발 향상 등을 위해 국민 스스스로 직업능력개발훈련을 실시할 수 있도록 훈련비 등을 지원합니다. K-디지털 트레이닝 청년들이 선호하는 민간의 혁신 훈련기관, 디지털 분야 선도 기업, 우수대학 등이 훈련기관으로 참여하여 AI, 빅데이터 등 기반 기술과, 이를 활용한 핀테크, 클라우드, 스마트제조 등 응용기술을 배우고 실전에서 활용할 수 있도록 다양한 훈련 과정을 제공하는 직업훈련사업 K-디지털 기초역량훈련 청년, 중장년 등이 디지털 역량 부족으로 노동시장 진입 및 적응에 어려움을 겪지 않도록 디지털 분야 기초역량 개발을 지원하는 정부지원 훈련입니다. * 「디지털 기초역량훈련과정」은 언제·어디서나 수강할 수 있는 100% 인터넷 원격훈련입니다.",
-    "url": "https://www.data.go.kr/data/15109032/openapi.do",
-    "keywords": "내일배움카드,훈련과정,근로자",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2022-12-05",
-    "dateModified": "2024-10-18",
-    "datePublished": "2022-12-05",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "데이터기획운영팀",
-        "telephone": "043-870-8564",
-        "@type": "ContactPoint"
+    name: '한국고용정보원_직업훈련_국민내일배움카드 훈련과정',
+    description:
+      '국민내일배움카드(일반) 급격한 기술발전에 적응하고 노동시장 변화에 대응하는 사회안전망 차원에서 생애에 걸친 역량개발 향상 등을 위해 국민 스스스로 직업능력개발훈련을 실시할 수 있도록 훈련비 등을 지원합니다. K-디지털 트레이닝 청년들이 선호하는 민간의 혁신 훈련기관, 디지털 분야 선도 기업, 우수대학 등이 훈련기관으로 참여하여 AI, 빅데이터 등 기반 기술과, 이를 활용한 핀테크, 클라우드, 스마트제조 등 응용기술을 배우고 실전에서 활용할 수 있도록 다양한 훈련 과정을 제공하는 직업훈련사업 K-디지털 기초역량훈련 청년, 중장년 등이 디지털 역량 부족으로 노동시장 진입 및 적응에 어려움을 겪지 않도록 디지털 분야 기초역량 개발을 지원하는 정부지원 훈련입니다. * 「디지털 기초역량훈련과정」은 언제·어디서나 수강할 수 있는 100% 인터넷 원격훈련입니다.',
+    url: 'https://www.data.go.kr/data/15109032/openapi.do',
+    keywords: '내일배움카드,훈련과정,근로자',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2022-12-05',
+    dateModified: '2024-10-18',
+    datePublished: '2022-12-05',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '데이터기획운영팀',
+        telephone: '043-870-8564',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "사회복지 - 고용노동",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: '사회복지 - 고용노동',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "AI 기반 디지털 교육 훈련과정",
-    "description": "AI, 빅데이터, 클라우드 등 디지털 기술 분야의 기초부터 고급 과정까지 제공하는 훈련. 청년 및 중장년층의 디지털 기술 습득을 통해 직업능력을 향상시키고 노동시장에 성공적으로 진입할 수 있도록 돕는 정부 지원 프로그램.",
-    "url": "https://www.data.go.kr/data/15109033/openapi.do",
-    "keywords": "디지털교육, AI훈련, 빅데이터",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-01-10",
-    "dateModified": "2024-11-01",
-    "datePublished": "2023-01-10",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "디지털 교육팀",
-        "telephone": "043-870-8565",
-        "@type": "ContactPoint"
+    name: 'AI 기반 디지털 교육 훈련과정',
+    description:
+      'AI, 빅데이터, 클라우드 등 디지털 기술 분야의 기초부터 고급 과정까지 제공하는 훈련. 청년 및 중장년층의 디지털 기술 습득을 통해 직업능력을 향상시키고 노동시장에 성공적으로 진입할 수 있도록 돕는 정부 지원 프로그램.',
+    url: 'https://www.data.go.kr/data/15109033/openapi.do',
+    keywords: '디지털교육, AI훈련, 빅데이터',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-01-10',
+    dateModified: '2024-11-01',
+    datePublished: '2023-01-10',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '디지털 교육팀',
+        telephone: '043-870-8565',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "사회복지 - 고용노동",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: '사회복지 - 고용노동',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "스마트제조 혁신 훈련과정",
-    "description": "스마트 제조 기술을 활용하여 효율성을 극대화할 수 있는 훈련과정. 현장 중심의 훈련으로 제조업 종사자들의 생산성 향상에 기여.",
-    "url": "https://www.data.go.kr/data/15109034/openapi.do",
-    "keywords": "스마트제조, 제조업, 혁신기술",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-02-15",
-    "dateModified": "2024-09-25",
-    "datePublished": "2023-02-15",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "스마트 제조팀",
-        "telephone": "043-870-8566",
-        "@type": "ContactPoint"
+    name: '스마트제조 혁신 훈련과정',
+    description:
+      '스마트 제조 기술을 활용하여 효율성을 극대화할 수 있는 훈련과정. 현장 중심의 훈련으로 제조업 종사자들의 생산성 향상에 기여.',
+    url: 'https://www.data.go.kr/data/15109034/openapi.do',
+    keywords: '스마트제조, 제조업, 혁신기술',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-02-15',
+    dateModified: '2024-09-25',
+    datePublished: '2023-02-15',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '스마트 제조팀',
+        telephone: '043-870-8566',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "산업기술 - 제조업",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: '산업기술 - 제조업',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "핀테크 전문인력 양성 훈련과정",
-    "description": "핀테크 산업에 필요한 기술과 이론을 종합적으로 배우는 훈련 과정. 다양한 핀테크 기업과 협력하여 실제 사례 기반 학습 제공.",
-    "url": "https://www.data.go.kr/data/15109035/openapi.do",
-    "keywords": "핀테크, 금융기술, 전문인력",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-03-20",
-    "dateModified": "2024-11-10",
-    "datePublished": "2023-03-20",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "핀테크 교육팀",
-        "telephone": "043-870-8567",
-        "@type": "ContactPoint"
+    name: '핀테크 전문인력 양성 훈련과정',
+    description:
+      '핀테크 산업에 필요한 기술과 이론을 종합적으로 배우는 훈련 과정. 다양한 핀테크 기업과 협력하여 실제 사례 기반 학습 제공.',
+    url: 'https://www.data.go.kr/data/15109035/openapi.do',
+    keywords: '핀테크, 금융기술, 전문인력',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-03-20',
+    dateModified: '2024-11-10',
+    datePublished: '2023-03-20',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '핀테크 교육팀',
+        telephone: '043-870-8567',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "금융 - 핀테크",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: '금융 - 핀테크',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "디지털마케팅 훈련과정",
-    "description": "디지털 마케팅의 기초부터 고급 전략까지 배우는 과정. 소셜 미디어 마케팅, SEO, 콘텐츠 마케팅 등의 분야를 다룹니다.",
-    "url": "https://www.data.go.kr/data/15109036/openapi.do",
-    "keywords": "디지털마케팅, 소셜미디어, SEO",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-04-10",
-    "dateModified": "2024-08-30",
-    "datePublished": "2023-04-10",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "디지털마케팅 교육팀",
-        "telephone": "043-870-8568",
-        "@type": "ContactPoint"
+    name: '디지털마케팅 훈련과정',
+    description:
+      '디지털 마케팅의 기초부터 고급 전략까지 배우는 과정. 소셜 미디어 마케팅, SEO, 콘텐츠 마케팅 등의 분야를 다룹니다.',
+    url: 'https://www.data.go.kr/data/15109036/openapi.do',
+    keywords: '디지털마케팅, 소셜미디어, SEO',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-04-10',
+    dateModified: '2024-08-30',
+    datePublished: '2023-04-10',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '디지털마케팅 교육팀',
+        telephone: '043-870-8568',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "마케팅 - 디지털",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: '마케팅 - 디지털',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "클라우드 컴퓨팅 훈련과정",
-    "description": "클라우드 기술의 기초부터 고급 기술까지 제공하는 훈련 과정으로, AWS, Azure, Google Cloud 등 주요 클라우드 플랫폼을 학습할 수 있습니다.",
-    "url": "https://www.data.go.kr/data/15109037/openapi.do",
-    "keywords": "클라우드컴퓨팅, AWS, GoogleCloud",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-05-05",
-    "dateModified": "2024-09-15",
-    "datePublished": "2023-05-05",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "클라우드 교육팀",
-        "telephone": "043-870-8569",
-        "@type": "ContactPoint"
+    name: '클라우드 컴퓨팅 훈련과정',
+    description:
+      '클라우드 기술의 기초부터 고급 기술까지 제공하는 훈련 과정으로, AWS, Azure, Google Cloud 등 주요 클라우드 플랫폼을 학습할 수 있습니다.',
+    url: 'https://www.data.go.kr/data/15109037/openapi.do',
+    keywords: '클라우드컴퓨팅, AWS, GoogleCloud',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-05-05',
+    dateModified: '2024-09-15',
+    datePublished: '2023-05-05',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '클라우드 교육팀',
+        telephone: '043-870-8569',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "IT - 클라우드",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: 'IT - 클라우드',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "블록체인 개발자 훈련과정",
-    "description": "블록체인 기술의 기초부터 스마트 계약, DApp 개발 등 다양한 블록체인 관련 기술을 다루는 훈련 과정.",
-    "url": "https://www.data.go.kr/data/15109038/openapi.do",
-    "keywords": "블록체인, 스마트계약, DApp",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-06-01",
-    "dateModified": "2024-10-05",
-    "datePublished": "2023-06-01",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "블록체인 교육팀",
-        "telephone": "043-870-8570",
-        "@type": "ContactPoint"
+    name: '블록체인 개발자 훈련과정',
+    description:
+      '블록체인 기술의 기초부터 스마트 계약, DApp 개발 등 다양한 블록체인 관련 기술을 다루는 훈련 과정.',
+    url: 'https://www.data.go.kr/data/15109038/openapi.do',
+    keywords: '블록체인, 스마트계약, DApp',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-06-01',
+    dateModified: '2024-10-05',
+    datePublished: '2023-06-01',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '블록체인 교육팀',
+        telephone: '043-870-8570',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "IT - 블록체인",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: 'IT - 블록체인',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "게임 개발 훈련과정",
-    "description": "게임 개발의 기초부터 고급 기술까지 배울 수 있는 훈련 과정. Unity, Unreal Engine 등 인기 게임 엔진을 다루며 게임 프로그래밍, 3D 모델링 등을 학습.",
-    "url": "https://www.data.go.kr/data/15109039/openapi.do",
-    "keywords": "게임개발, Unity, UnrealEngine",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-07-12",
-    "dateModified": "2024-08-01",
-    "datePublished": "2023-07-12",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "게임개발 교육팀",
-        "telephone": "043-870-8571",
-        "@type": "ContactPoint"
+    name: '게임 개발 훈련과정',
+    description:
+      '게임 개발의 기초부터 고급 기술까지 배울 수 있는 훈련 과정. Unity, Unreal Engine 등 인기 게임 엔진을 다루며 게임 프로그래밍, 3D 모델링 등을 학습.',
+    url: 'https://www.data.go.kr/data/15109039/openapi.do',
+    keywords: '게임개발, Unity, UnrealEngine',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-07-12',
+    dateModified: '2024-08-01',
+    datePublished: '2023-07-12',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '게임개발 교육팀',
+        telephone: '043-870-8571',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "게임 - 개발",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
+    additionalType: '게임 - 개발',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
   },
   {
-    "name": "로봇 프로그래밍 훈련과정",
-    "description": "로봇 기술과 프로그래밍을 배우는 과정으로, IoT와 로봇의 상호작용을 이해하고, 실제 로봇을 제어하는 방법을 학습.",
-    "url": "https://www.data.go.kr/data/15109040/openapi.do",
-    "keywords": "로봇프로그래밍, IoT, 제어기술",
-    "license": "이용허락범위 제한 없음",
-    "dateCreated": "2023-08-20",
-    "dateModified": "2024-07-10",
-    "datePublished": "2023-08-20",
-    "creator": {
-      "name": "한국고용정보원",
-      "contactPoint": {
-        "contactType": "로봇프로그래밍 교육팀",
-        "telephone": "043-870-8572",
-        "@type": "ContactPoint"
+    name: '로봇 프로그래밍 훈련과정',
+    description:
+      '로봇 기술과 프로그래밍을 배우는 과정으로, IoT와 로봇의 상호작용을 이해하고, 실제 로봇을 제어하는 방법을 학습.',
+    url: 'https://www.data.go.kr/data/15109040/openapi.do',
+    keywords: '로봇프로그래밍, IoT, 제어기술',
+    license: '이용허락범위 제한 없음',
+    dateCreated: '2023-08-20',
+    dateModified: '2024-07-10',
+    datePublished: '2023-08-20',
+    creator: {
+      name: '한국고용정보원',
+      contactPoint: {
+        contactType: '로봇프로그래밍 교육팀',
+        telephone: '043-870-8572',
+        '@type': 'ContactPoint',
       },
-      "@type": "Organization"
+      '@type': 'Organization',
     },
-    "additionalType": "IT - 로봇",
-    "encodingFormat": "XML",
-    "@context": "https://schema.org",
-    "@type": "Dataset"
-  }
-]
-
+    additionalType: 'IT - 로봇',
+    encodingFormat: 'XML',
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+  },
+];
