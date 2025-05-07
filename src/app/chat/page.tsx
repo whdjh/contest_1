@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 interface ChatMessage {
   text: string;
   sender: 'user' | 'bot';
+  createdAt?: string;
 }
 
 const GREETINGS = `안녕하세요, 잡코디입니다! 직무 추천을 위해 아래 폼 데이터를 입력해주세요!`;
@@ -28,7 +29,11 @@ export default function Page() {
 
   useEffect(() => {
     if (messages.length === 0) {
-      setMessages([{ text: GREETINGS, sender: 'bot' }]);
+      setMessages([{ 
+        text: GREETINGS, 
+        sender: 'bot', 
+        createdAt: new Date().toISOString(),
+      }]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -51,7 +56,11 @@ export default function Page() {
 
     setMessages((prev) => [
       ...prev,
-      { text: userMessage, sender: 'user' },
+      { 
+        text: userMessage, 
+        sender: 'user',
+        createdAt: new Date().toISOString(),
+       },
       { text: '제출 중입니다...', sender: 'bot' },
     ]);
     setIsFormSubmitted(true);
@@ -61,7 +70,10 @@ export default function Page() {
       setUuid(response.uuid);
       setMessages((prev) => [
         ...prev.slice(0, -1),
-        { text: response?.content || '응답을 가져오지 못했습니다.', sender: 'bot' },
+        { text: response?.content || '응답을 가져오지 못했습니다.', 
+          sender: 'bot',
+          createdAt: response?.createdAt,
+        },
       ]);
       setShowEndButton(true);
     } catch (error: unknown) {
@@ -101,7 +113,11 @@ export default function Page() {
     const userText = chatInput;
     setMessages((prev) => [
       ...prev,
-      { text: userText, sender: 'user' },
+      { 
+        text: userText, 
+        sender: 'user',
+        createdAt: new Date().toISOString(),
+       },
       { text: '봇 응답 준비 중입니다...', sender: 'bot' },
     ]);
     setChatInput('');
@@ -113,7 +129,11 @@ export default function Page() {
       });
       setMessages((prev) => [
         ...prev.slice(0, -1),
-        { text: response?.content || '응답을 가져오지 못했습니다.', sender: 'bot' },
+        { 
+          text: response?.content || '응답을 가져오지 못했습니다.',
+          sender: 'bot',
+          createdAt: response?.createdAt,
+        },
       ]);
     } catch (error: unknown) {
       let errMsg = '오류가 발생했습니다. 다시 시도해주세요.';
@@ -159,6 +179,7 @@ export default function Page() {
             value={msg.text}
             userStatus={msg.sender === 'user'}
             alignRight={msg.sender === 'user'}
+            createdAt={msg.createdAt}
           />
         ))}
         {!isFormSubmitted && (

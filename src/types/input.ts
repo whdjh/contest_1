@@ -10,4 +10,5 @@ export interface CustomInputProps {
   onTogglePassword?: () => void;
   userStatus?: boolean;
   alignRight?: boolean;
+  createdAt?: string;
 }
