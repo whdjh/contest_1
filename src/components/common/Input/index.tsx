@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { CustomInputProps } from '@/types/input';
 import Button from '../Button';
 import { useAutoResizeInput } from '@/hooks/useResizeInput';
+import formatTime from '@/utils/formatTime';
 
 export default function Input({
   type,
@@ -18,6 +19,7 @@ export default function Input({
   userStatus,
   alignRight,
   placeholder = '',
+  createdAt,
 }: CustomInputProps & {
   onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   onCompositionStart?: () => void;
@@ -89,7 +91,9 @@ export default function Input({
             `}
           >
             {value}
-            <h3 className='flex justify-end text-[8px]'>01:30</h3>
+            <h3 className='flex justify-end text-[8px]'>
+              {formatTime(createdAt)}
+            </h3>
           </div>
         </div>
       );
