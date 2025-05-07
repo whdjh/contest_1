@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ComponentType } from 'react';
 import { CardProps } from '@/types/card';
 import Button from '@/components/common/Button';
@@ -17,9 +17,34 @@ export default function Pagination({
   pageSize = 3,
 }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(data.length / pageSize);
-  const startIndex = (currentPage - 1) * pageSize;
-  const currentData = data.slice(startIndex, startIndex + pageSize);
+  const [responsivePageSize, setResponsivePageSize] = useState<number>(pageSize);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+
+      if (width < 640) {
+        setResponsivePageSize(1);
+      } 
+      else if (width < 800) {
+        setResponsivePageSize(2);
+      } 
+      else if (width < 1024) {
+        setResponsivePageSize(3);
+      } 
+      else {
+        setResponsivePageSize(pageSize);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [pageSize]);
+
+  const totalPages = Math.ceil(data.length / responsivePageSize);
+  const startIndex = (currentPage - 1) * responsivePageSize;
+  const currentData = data.slice(startIndex, startIndex + responsivePageSize);
 
   const handlePrev = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
@@ -31,7 +56,7 @@ export default function Pagination({
 
   return (
     <div className="flex flex-col items-center justify-center gap-6">
-      <div className="flex justify-center items-center gap-10">
+      <div className="flex flex-wrap justify-center items-center gap-6">
         {currentData.map((cardProps, index) => (
           <CardComponent
             key={index}
