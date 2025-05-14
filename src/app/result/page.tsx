@@ -45,14 +45,14 @@ export default function Page() {
   const category = resultData.category || 0;
 
   return (
-    <div className="min-h-screen bg-amber-50 py-10 px-4">
+    <div className="min-h-screen bg-amber-50 py-10 px-4 dark:bg-black">
       {/* Section 1: 추천 결과 요약 */}
       <section className="max-w-5xl mx-auto mb-10 bg-white rounded-2xl shadow-md p-6 border-l-4 border-amber-400">
         <h2 className="text-2xl font-bold text-amber-600 mb-4">추천 결과</h2>
-        <p className="text-lg mb-4">
-          <strong className="text-amber-500">당신의 추천 직업은</strong> <span className="font-semibold">{job}</span>입니다.
+        <p className="text-lg mb-4  dark:text-black">
+          <strong className="text-amber-500">당신의 추천 직업은</strong> <span className="font-semibold ">{job}</span>입니다.
         </p>
-        <p className="text-lg">
+        <p className="text-lg  dark:text-black">
           <strong className="text-amber-500">추천 이유:</strong> {reason}
         </p>
         <p className="text-sm text-gray-500 mt-4">
