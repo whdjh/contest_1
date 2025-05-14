@@ -173,23 +173,36 @@ export default function Page() {
     }
     
     try {
-      const response = await fetch('/api/chat/result', {
+      // POST 요청을 먼저 보내서 데이터 처리
+      const postResponse = await fetch('/api/chat/result', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ uuid }),
       });
-      
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
+  
+      if (!postResponse.ok) {
+        const errorData = await postResponse.json().catch(() => ({}));
         console.error('서버 응답 오류 데이터:', errorData);
-        throw new Error(`서버 응답 오류: ${response.status}`);
+        throw new Error(`서버 응답 오류: ${postResponse.status}`);
       }
       
-      const data = await response.json();
+      // POST 요청이 성공한 후, GET 요청을 보내 결과를 가져옴
+      const getResponse = await fetch(`/api/chat/result?uuid=${uuid}`, {
+        method: 'GET',
+      });
+  
+      if (!getResponse.ok) {
+        const errorData = await getResponse.json().catch(() => ({}));
+        console.error('GET 요청 오류 데이터:', errorData);
+        throw new Error(`서버 응답 오류: ${getResponse.status}`);
+      }
+  
+      const data = await getResponse.json();
       console.log('받은 데이터:', data);
-      
+  
+      // 받은 데이터 저장 및 페이지 이동
       localStorage.setItem('resultData', JSON.stringify(data));
       router.push('/result');
     } catch (error) {
@@ -197,6 +210,7 @@ export default function Page() {
       alert('결과를 가져오는 데 실패했습니다. 개발자 콘솔을 확인해주세요.');
     }
   };
+  
 
   return (
     <div className="flex flex-col h-screen">

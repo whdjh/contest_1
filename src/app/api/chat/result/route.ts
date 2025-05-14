@@ -20,10 +20,7 @@ export async function POST(req: NextRequest) {
       const data = await backendResponse.json();
       return NextResponse.json(data, { status: backendResponse.status });
     } catch {
-      return NextResponse.json(
-        { success: true },
-        { status: 200 }
-      );
+      return NextResponse.json({ success: true }, { status: 200 });
     }
   } catch (error) {
     console.error('프록시 에러:', error);
@@ -33,3 +30,39 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const uuid = searchParams.get('uuid');
+
+    if (!uuid) {
+      return NextResponse.json({ error: 'uuid 파라미터 필요' }, { status: 400 });
+    }
+
+    const backendResponse = await fetch(`${BASE_URL}/result?uuid=${uuid}`);
+
+    const contentType = backendResponse.headers.get('content-type');
+    console.log('백엔드 응답 content-type:', contentType);
+
+    if (!backendResponse.ok) {
+      const errorText = await backendResponse.text();
+      console.error('백엔드 응답 오류:', errorText);
+      return NextResponse.json({ error: '백엔드 에러' }, { status: backendResponse.status });
+    }
+
+    if (contentType?.includes('application/json')) {
+      const data = await backendResponse.json();
+      return NextResponse.json(data, { status: 200 });
+    } else {
+      const text = await backendResponse.text();
+      console.warn('JSON 아님, 텍스트 응답:', text);
+      return NextResponse.json({ raw: text }, { status: 200 });
+    }
+  } catch (error) {
+    console.error('GET 핸들러 서버 에러:', error);
+    return NextResponse.json({ error: '서버 내부 오류' }, { status: 500 });
+  }
+}
+
+
