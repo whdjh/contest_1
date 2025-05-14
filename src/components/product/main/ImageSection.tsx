@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { cards } from '@/mock/cards';
+import { cards } from '@/components/product/main/cards';
 
 export default function MainSection() {
   const [activeIndex, setActiveIndex] = useState(0);
