@@ -12,17 +12,14 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(body),
     });
     
-    // 204 No Content 처리
     if (backendResponse.status === 204) {
       return NextResponse.json({ success: true }, { status: 200 });
     }
     
-    // 다른 상태코드인 경우 JSON 응답 파싱 시도
     try {
       const data = await backendResponse.json();
       return NextResponse.json(data, { status: backendResponse.status });
     } catch {
-      // JSON 파싱 실패시 - 변수를 사용하지 않으므로 생략
       return NextResponse.json(
         { success: true },
         { status: 200 }
