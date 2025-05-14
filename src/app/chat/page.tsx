@@ -173,7 +173,6 @@ export default function Page() {
     }
     
     try {
-      // POST 요청을 먼저 보내서 데이터 처리
       const postResponse = await fetch('/api/chat/result', {
         method: 'POST',
         headers: {
@@ -188,7 +187,6 @@ export default function Page() {
         throw new Error(`서버 응답 오류: ${postResponse.status}`);
       }
       
-      // POST 요청이 성공한 후, GET 요청을 보내 결과를 가져옴
       const getResponse = await fetch(`/api/chat/result?uuid=${uuid}`, {
         method: 'GET',
       });
@@ -202,12 +200,11 @@ export default function Page() {
       const data = await getResponse.json();
       console.log('받은 데이터:', data);
   
-      // 받은 데이터 저장 및 페이지 이동
       localStorage.setItem('resultData', JSON.stringify(data));
       router.push('/result');
     } catch (error) {
       console.error('handleEndButtonClick 에러:', error);
-      alert('결과를 가져오는 데 실패했습니다. 개발자 콘솔을 확인해주세요.');
+      alert('결과를 가져오는 데 실패');
     }
   };
   
