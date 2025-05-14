@@ -21,7 +21,7 @@ export default function Page() {
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [isComposing, setIsComposing] = useState(false); 
+  const [isComposing, setIsComposing] = useState(false);
   const [uuid, setUuid] = useState<string | null>(null);
   const [showEndButton, setShowEndButton] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -29,11 +29,13 @@ export default function Page() {
 
   useEffect(() => {
     if (messages.length === 0) {
-      setMessages([{ 
-        text: GREETINGS, 
-        sender: 'bot', 
-        createdAt: new Date().toISOString(),
-      }]);
+      setMessages([
+        {
+          text: GREETINGS,
+          sender: 'bot',
+          createdAt: new Date().toISOString(),
+        },
+      ]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -56,11 +58,11 @@ export default function Page() {
 
     setMessages((prev) => [
       ...prev,
-      { 
-        text: userMessage, 
+      {
+        text: userMessage,
         sender: 'user',
         createdAt: new Date().toISOString(),
-       },
+      },
       { text: '제출 중입니다...', sender: 'bot' },
     ]);
     setIsFormSubmitted(true);
@@ -70,7 +72,8 @@ export default function Page() {
       setUuid(response.uuid);
       setMessages((prev) => [
         ...prev.slice(0, -1),
-        { text: response?.content || '응답을 가져오지 못했습니다.', 
+        {
+          text: response?.content || '응답을 가져오지 못했습니다.',
           sender: 'bot',
           createdAt: response?.createdAt,
         },
@@ -96,7 +99,9 @@ export default function Page() {
     };
 
     if (scrollContainer) {
-      scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
+      scrollContainer.addEventListener('wheel', handleWheel, {
+        passive: false,
+      });
       return () => {
         scrollContainer.removeEventListener('wheel', handleWheel);
       };
@@ -113,11 +118,11 @@ export default function Page() {
     const userText = chatInput;
     setMessages((prev) => [
       ...prev,
-      { 
-        text: userText, 
+      {
+        text: userText,
         sender: 'user',
         createdAt: new Date().toISOString(),
-       },
+      },
       { text: '봇 응답 준비 중입니다...', sender: 'bot' },
     ]);
     setChatInput('');
@@ -129,7 +134,7 @@ export default function Page() {
       });
       setMessages((prev) => [
         ...prev.slice(0, -1),
-        { 
+        {
           text: response?.content || '응답을 가져오지 못했습니다.',
           sender: 'bot',
           createdAt: response?.createdAt,
@@ -161,9 +166,36 @@ export default function Page() {
     }
   };
 
-  // TODO: API 연동하기
-  const handleEndButtonClick = () => {
-    router.push('/result');
+  const handleEndButtonClick = async () => {
+    if (!uuid) {
+      alert('폼 제출이 정상적으로 되지 않았습니다.');
+      return;
+    }
+    
+    try {
+      const response = await fetch('/api/chat/result', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ uuid }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('서버 응답 오류 데이터:', errorData);
+        throw new Error(`서버 응답 오류: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('받은 데이터:', data);
+      
+      localStorage.setItem('resultData', JSON.stringify(data));
+      router.push('/result');
+    } catch (error) {
+      console.error('handleEndButtonClick 에러:', error);
+      alert('결과를 가져오는 데 실패했습니다. 개발자 콘솔을 확인해주세요.');
+    }
   };
 
   return (
@@ -182,9 +214,7 @@ export default function Page() {
             createdAt={msg.createdAt}
           />
         ))}
-        {!isFormSubmitted && (
-          <ChatForm onSubmitComplete={handleFormSubmit} />
-        )}
+        {!isFormSubmitted && <ChatForm onSubmitComplete={handleFormSubmit} />}
       </div>
 
       {isFormSubmitted && (
