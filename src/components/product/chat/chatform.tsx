@@ -198,7 +198,7 @@ export default function ChatForm({ onSubmitComplete }: ChatFormProps) {
       </div>
       {errors.desiredSalary && <p className="text-red-500 text-sm">{errors.desiredSalary.message}</p>}
 
-      <div className="flex justify-end">
+      <div className="flex justify-center">
         <Button
           type="formSubmit"
           value={isSubmitting ? '제출 중...' : '제출하기'}
