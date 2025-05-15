@@ -69,6 +69,7 @@ export default function Page() {
 
     try {
       const response = await postFirstChat(formData);
+      console.log(response);
       setUuid(response.uuid);
       setMessages((prev) => [
         ...prev.slice(0, -1),
