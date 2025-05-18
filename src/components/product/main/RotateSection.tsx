@@ -112,7 +112,7 @@ export default function RotateSection() {
     <section className="relative w-full h-screen overflow-hidden text-black ">
       <div className="absolute top-[14%] left-1/2 -translate-x-1/2 h-screen select-none flex flex-col gap-20">
         <p className="md:text-5xl text-2xl font-bold text-transparent bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text shadow-lg">
-          CareerBot 
+          JobCoordi
         </p>
 
         <div
