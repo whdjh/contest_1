@@ -26,6 +26,7 @@ export default function Page() {
   const [showEndButton, setShowEndButton] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const [isSubmittingResult, setIsSubmittingResult] = useState(false);
 
   useEffect(() => {
     if (messages.length === 0) {
@@ -172,7 +173,6 @@ export default function Page() {
       alert('폼 제출이 정상적으로 되지 않았습니다.');
       return;
     }
-    
     try {
       const postResponse = await fetch('/api/chat/result', {
         method: 'POST',
@@ -206,6 +206,8 @@ export default function Page() {
     } catch (error) {
       console.error('handleEndButtonClick 에러:', error);
       alert('결과를 가져오는 데 실패');
+    } finally {
+    setIsSubmittingResult(false);
     }
   };
   
@@ -244,7 +246,13 @@ export default function Page() {
       )}
 
       {showEndButton && (
-        <FloatingButton type="end" onClick={handleEndButtonClick} />
+        isSubmittingResult ? (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
+          </div>
+        ) : (
+          <FloatingButton type="end" onClick={handleEndButtonClick} />
+        )
       )}
       <FloatingButton type="upscroll" scrollRef={scrollRef} />
     </div>
