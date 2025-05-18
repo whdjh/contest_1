@@ -21,7 +21,6 @@ export default function MainSection() {
           <div className="bg-gradient-to-t from-black via-transparent to-transparent absolute inset-0 rounded-lg"></div>
           <div className="relative p-4 text-white">
             <div className="flex items-center space-x-2">
-              <i className={`${card.icon} text-xl`}></i>
               <div>
               </div>
             </div>

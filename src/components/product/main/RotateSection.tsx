@@ -11,14 +11,14 @@ export default function RotateSection() {
   const itemsRef = useRef<HTMLDivElement>(null);
 
   const images = [
-    '/image/1.jpeg',
-    '/image/2.jpeg',
-    '/image/3.jpg',
-    '/image/4.jpeg',
-    '/image/5.jpeg',
-    '/image/6.jpeg',
-    '/image/7.jpeg',
-    '/image/8.jpg',
+    '/image/1.png',
+    '/image/2.png',
+    '/image/3.png',
+    '/image/4.png',
+    '/image/5.png',
+    '/image/6.png',
+    '/image/7.png',
+    '/image/8.png',
   ];
 
   useEffect(() => {
