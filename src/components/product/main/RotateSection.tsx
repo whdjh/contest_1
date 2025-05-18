@@ -11,14 +11,14 @@ export default function RotateSection() {
   const itemsRef = useRef<HTMLDivElement>(null);
 
   const images = [
-    '/image/1.jpeg',
-    '/image/2.jpeg',
-    '/image/3.jpg',
-    '/image/4.jpeg',
-    '/image/5.jpeg',
-    '/image/6.jpeg',
-    '/image/7.jpeg',
-    '/image/8.jpg',
+    '/image/1.png',
+    '/image/2.png',
+    '/image/3.png',
+    '/image/4.png',
+    '/image/5.png',
+    '/image/6.png',
+    '/image/7.png',
+    '/image/8.png',
   ];
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export default function RotateSection() {
     <section className="relative w-full h-screen overflow-hidden text-black ">
       <div className="absolute top-[14%] left-1/2 -translate-x-1/2 h-screen select-none flex flex-col gap-20">
         <p className="md:text-5xl text-2xl font-bold text-transparent bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text shadow-lg">
-          CareerBot 
+          JobCoordi
         </p>
 
         <div
