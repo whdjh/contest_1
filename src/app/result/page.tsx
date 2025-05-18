@@ -75,6 +75,7 @@ export default function Page() {
         </p>
       </section>
 
+
       {/* Section 2: 추천 직무 카드 목록 */}
       <section className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md p-6 border-l-4 border-amber-400">
         <h3 className="text-xl font-semibold text-amber-600 mb-4">관련 직무 훈련 과정(추가예정)</h3>

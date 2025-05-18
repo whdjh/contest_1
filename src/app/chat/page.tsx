@@ -28,6 +28,7 @@ export default function Page() {
   const router = useRouter();
   const [isSubmittingResult, setIsSubmittingResult] = useState(false);
 
+
   useEffect(() => {
     if (messages.length === 0) {
       setMessages([
@@ -173,6 +174,8 @@ export default function Page() {
       alert('폼 제출이 정상적으로 되지 않았습니다.');
       return;
     }
+    setIsSubmittingResult(true);
+    
     try {
       const postResponse = await fetch('/api/chat/result', {
         method: 'POST',
